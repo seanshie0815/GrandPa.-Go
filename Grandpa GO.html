@@ -1,0 +1,3072 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///C:/Users/swanm/OneDrive/Desktop/TEMP/index.html -->
+<html lang="zh-TW" class="h-full"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grandpa GO</title>
+  <script src="file:///C:/_sdk/data_sdk.js"></script>
+  <script src="file:///C:/_sdk/element_sdk.js"></script>
+  <script src="./Grandpa GO_files/saved_resource"></script>
+  <link rel="stylesheet" href="./Grandpa GO_files/leaflet.css">
+  <script src="./Grandpa GO_files/leaflet.js.下載"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+    
+    @keyframes bounce-in {
+      0% { transform: scale(0.5); opacity: 0; }
+      50% { transform: scale(1.03); }
+      70% { transform: scale(0.94); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes slide-up {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes celebration {
+      0% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.12) rotate(6deg); }
+      50% { transform: scale(1.06) rotate(-6deg); }
+      75% { transform: scale(1.12) rotate(6deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .pulse-animation {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    
+    .bounce-in {
+      animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    .slide-up {
+      animation: slide-up 0.5s ease-out;
+    }
+    
+    .celebration {
+      animation: celebration 0.6s ease-in-out;
+    }
+    
+    .btn-scale:active {
+      transform: scale(0.95);
+    }
+    
+    .page-transition {
+      transition: opacity 0.3s ease-in-out;
+    }
+    
+    .card-flip {
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    
+    .card-flip.flipped {
+      transform: rotateY(180deg);
+    }
+    
+    .card-front, .card-back {
+      backface-visibility: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.75rem;
+    }
+    
+    .card-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-8{margin-bottom:2rem}.mt-6{margin-top:1.5rem}.block{display:block}.flex{display:flex}.h-full{height:100%}.min-h-full{min-height:100%}.w-full{width:100%}.max-w-md{max-width:28rem}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.items-center{align-items:center}.justify-center{justify-content:center}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-auto{overflow:auto}.rounded-3xl{border-radius:1.5rem}.rounded-xl{border-radius:0.75rem}.border-2{border-width:2px}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.from-green-50{--tw-gradient-from:#f0fdf4 var(--tw-gradient-from-position);--tw-gradient-to:rgb(240 253 244 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-blue-50{--tw-gradient-to:#eff6ff var(--tw-gradient-to-position)}.p-4{padding:1rem}.p-8{padding:2rem}.px-4{padding-left:1rem;padding-right:1rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.text-center{text-align:center}.text-6xl{font-size:3.75rem;line-height:1}.font-bold{font-weight:700}.font-semibold{font-weight:600}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}</style></head>
+ <body class="h-full bg-gradient-to-br from-green-50 to-blue-50">
+  <div id="app" class="h-full w-full overflow-auto">
+        <div class="min-h-full flex items-center justify-center p-4" style="background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);">
+          <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md bounce-in">
+            <div class="text-center mb-8">
+              <div class="text-6xl mb-4">📝</div>
+              <h1 class="font-bold mb-2" style="font-size: 32px; color: #10b981;">新用戶註冊</h1>
+              <p style="font-size: 16px; color: #1f2937;">加入 Grandpa GO 開始健康生活</p>
+            </div>
+            
+            <form id="registerForm" class="space-y-6">
+              <div class="slide-up">
+                <label for="regUsername" class="block font-semibold mb-2" style="color: #1f2937; font-size: 16px;">帳號</label>
+                <input type="text" id="regUsername" required="" class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none" style="font-size: 16px; border-color: #10b981;" placeholder="請設定帳號">
+              </div>
+              
+              <div class="slide-up" style="animation-delay: 0.1s;">
+                <label for="regPassword" class="block font-semibold mb-2" style="color: #1f2937; font-size: 16px;">密碼</label>
+                <input type="password" id="regPassword" required="" class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none" style="font-size: 16px; border-color: #10b981;" placeholder="請設定密碼">
+              </div>
+              
+              <div class="slide-up" style="animation-delay: 0.2s;">
+                <label for="regDisplayName" class="block font-semibold mb-2" style="color: #1f2937; font-size: 16px;">顯示名稱</label>
+                <input type="text" id="regDisplayName" required="" class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none" style="font-size: 16px; border-color: #10b981;" placeholder="你好：王大明">
+              </div>
+              
+              <button type="submit" class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up" style="background: #10b981; font-size: 19.2px; animation-delay: 0.3s;">
+                ✅ 註冊
+              </button>
+            </form>
+            
+            <div class="mt-6 text-center slide-up" style="animation-delay: 0.4s;">
+              <button onclick="currentPage=&#39;login&#39;; render();" class="text-blue-600 font-semibold hover:underline" style="font-size: 16px;">
+                ← 返回登入
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  <script>
+    const defaultConfig = {
+      app_title: "Grandpa GO",
+      welcome_message: "?????  ^ ӡI",
+      games_section_title: "     C  ",
+      progress_label: " Ӫ      i  ",
+      survey_button_text: "    M _",
+      park_section_title: "   ˤ   ",
+      health_section_title: "   d ޲z",
+      emergency_title: "   D U",
+      primary_color: "#047857",
+      secondary_color: "#ffffff",
+      text_color: "#000000",
+      button_color: "#1e40af",
+      accent_color: "#b45309",
+      font_family: "system-ui",
+      font_size: 18
+    };
+    
+    let currentUser = null;
+    let allUsers = [];
+    let currentPage = 'login';
+    let fontSize = 18;
+    
+    const ADMIN_USERNAME = 'Admin';
+    const ADMIN_PASSWORD = 'admin';
+    
+    const FRUIT_EMOJIS = ['? ', '? ', '? ', '? ', '? ', '? ', '? ', '? '];
+    
+    const PARKS = [
+      { id: 1, name: "   ꤽ  ", lat: 24.9574, lng: 121.2241, rating: 4.5, features: "   Z B D B B ʾ    B B   D F" },
+      { id: 2, name: "   ͤ   ", lat: 24.9653, lng: 121.2167, rating: 4.3, features: " e    a B   ̹B ʰϡB 𮧮y  " },
+      { id: 3, name: "        ", lat: 24.9617, lng: 121.2254, rating: 4.6, features: " L  ê B D B      u B   [ u  " },
+      { id: 4, name: " s   ˪L    ", lat: 24.9501, lng: 121.2343, rating: 4.7, features: " j    a B     B D B A X   B" },
+      { id: 5, name: "        ", lat: 24.9598, lng: 121.2201, rating: 4.4, features: "     ߦ m B ] I     B  q?? Q" },
+      { id: 6, name: " C H    ", lat: 25.0123, lng: 121.2156, rating: 4.5, features: " { N      B L  ê ] p B e   ξA" }
+    ];
+    
+    let medicationCheckInterval = null;
+    
+    const dataHandler = {
+      onDataChanged(data) {
+        allUsers = data;
+        if (currentUser && currentPage !== 'admin') {
+          const userData = allUsers.find(u => u.username === currentUser.username);
+          if (userData) {
+            currentUser = userData;
+          }
+        }
+        render();
+      }
+    };
+    
+    async function initApp() {
+      const result = await window.dataSdk.init(dataHandler);
+      if (!result.isOk) {
+        console.error('Failed to initialize data SDK');
+        return;
+      }
+      
+      const savedFontSize = localStorage.getItem('grandpa_go_font_size');
+      if (savedFontSize) {
+        fontSize = parseInt(savedFontSize);
+      }
+      
+      startMedicationCheck();
+      render();
+    }
+    
+    function startMedicationCheck() {
+      if (medicationCheckInterval) {
+        clearInterval(medicationCheckInterval);
+      }
+      
+      medicationCheckInterval = setInterval(() => {
+        if (!currentUser || currentUser.isAdmin) return;
+        
+        const userData = allUsers.find(u => u.username === currentUser.username);
+        if (!userData || !userData.medication_name || !userData.medication_time) return;
+        
+        const today = new Date().toLocaleDateString('zh-TW');
+        if (userData.medication_completed && userData.medication_date === today) return;
+        
+        const now = new Date();
+        const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        
+        if (currentTime === userData.medication_time) {
+          showMedicationReminder();
+        }
+      }, 10000);
+    }
+    
+    function showMedicationReminder() {
+      const overlay = document.createElement('div');
+      overlay.style.cssText = `
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background: rgba(0,0,0,0.95); 
+        z-index: 9999; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+        padding: 20px;
+      `;
+      
+      overlay.innerHTML = `
+        <div class="text-center bounce-in">
+          <div style="font-size: ${fontSize * 8}px; margin-bottom: 30px;">? </div>
+          <h1 style="font-size: ${fontSize * 2.5}px; color: white; font-weight: bold; margin-bottom: 30px;"> A Ĵ   I</h1>
+          <p style="font-size: ${fontSize * 1.8}px; color: white; margin-bottom: 50px;">
+             ӦY   o G${currentUser.medication_name}
+          </p>
+          <button onclick="confirmMedication()" 
+            style="background: ${defaultConfig.primary_color}; color: white; font-size: ${fontSize * 1.5}px; padding: 20px 60px; border-radius: 20px; font-weight: bold; border: none; cursor: pointer;">
+             w A   ?
+          </button>
+        </div>
+      `;
+      
+      overlay.id = 'medicationOverlay';
+      document.body.appendChild(overlay);
+    }
+    
+    function showCelebration() {
+      const container = document.querySelector('.main-content');
+      if (container) {
+        container.classList.add('celebration');
+        setTimeout(() => container.classList.remove('celebration'), 600);
+      }
+    }
+    
+    async function handleLogin(username, password) {
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        currentUser = { username: ADMIN_USERNAME, isAdmin: true };
+        currentPage = 'admin';
+        render();
+        return;
+      }
+      
+      const user = allUsers.find(u => u.username === username && u.password === password);
+      
+      if (user) {
+        currentUser = user;
+        user.last_login = new Date().toISOString();
+        const updateResult = await window.dataSdk.update(user);
+        if (updateResult.isOk) {
+          currentPage = 'home';
+          render();
+        }
+      } else {
+        const errorMsg = document.createElement('div');
+        errorMsg.textContent = ' b   αK X   ~';
+        errorMsg.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #ef4444; color: white; padding: 12px 24px; border-radius: 8px; font-size: ${fontSize}px;`;
+        document.body.appendChild(errorMsg);
+        setTimeout(() => errorMsg.remove(), 2000);
+      }
+    }
+    
+    async function handleRegister(username, password, displayName) {
+      if (allUsers.length >= 999) {
+        const errorMsg = document.createElement('div');
+        errorMsg.textContent = ' w F ϥΪ̼ƶq W   ]999 H ^';
+        errorMsg.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #ef4444; color: white; padding: 12px 24px; border-radius: 8px; font-size: ${fontSize}px;`;
+        document.body.appendChild(errorMsg);
+        setTimeout(() => errorMsg.remove(), 2000);
+        return;
+      }
+      
+      if (allUsers.some(u => u.username === username)) {
+        const errorMsg = document.createElement('div');
+        errorMsg.textContent = '   b   w s b';
+        errorMsg.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #ef4444; color: white; padding: 12px 24px; border-radius: 8px; font-size: ${fontSize}px;`;
+        document.body.appendChild(errorMsg);
+        setTimeout(() => errorMsg.remove(), 2000);
+        return;
+      }
+      
+      const newUser = {
+        username,
+        password,
+        display_name: displayName,
+        growth_progress: 0,
+        total_nutrients: 0,
+        games_completed: 0,
+        completed_plants: 0,
+        created_at: new Date().toISOString(),
+        last_login: new Date().toISOString()
+      };
+      
+      const result = await window.dataSdk.create(newUser);
+      if (result.isOk) {
+        const successMsg = document.createElement('div');
+        successMsg.textContent = '   U   \ I еn J';
+        successMsg.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: ${defaultConfig.primary_color}; color: white; padding: 12px 24px; border-radius: 8px; font-size: ${fontSize}px;`;
+        document.body.appendChild(successMsg);
+        setTimeout(() => {
+          successMsg.remove();
+          currentPage = 'login';
+          render();
+        }, 2000);
+      } else {
+        const errorMsg = document.createElement('div');
+        errorMsg.textContent = '   U   ѡA еy  ??  ';
+        errorMsg.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #ef4444; color: white; padding: 12px 24px; border-radius: 8px; font-size: ${fontSize}px;`;
+        document.body.appendChild(errorMsg);
+        setTimeout(() => errorMsg.remove(), 2000);
+      }
+    }
+    
+    async function addNutrients(amount) {
+      if (!currentUser || currentUser.isAdmin) return;
+      
+      currentUser.total_nutrients += amount;
+      currentUser.growth_progress += amount;
+      
+      while (currentUser.growth_progress >= 100) {
+        currentUser.growth_progress -= 100;
+        currentUser.completed_plants = (currentUser.completed_plants || 0) + 1;
+      }
+      
+      currentUser.games_completed += 1;
+      
+      const result = await window.dataSdk.update(currentUser);
+      if (result.isOk) {
+        showCelebration();
+      }
+    }
+    
+    function getPlantStage(progress) {
+      if (progress < 25) return '? ';
+      if (progress < 50) return '? ';
+      if (progress < 75) return '? ';
+      if (progress < 100) return '? ';
+      return '? ';
+    }
+    
+    function renderLogin() {
+      return `
+        <div class="min-h-full flex items-center justify-center p-4 page-transition">
+          <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md bounce-in" style="font-size: ${fontSize}px;">
+            <h1 class="text-center font-bold mb-8 pulse-animation" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">${defaultConfig.app_title}</h1>
+            
+            <form id="loginForm" class="space-y-6">
+              <div class="slide-up">
+                <label class="block font-semibold mb-2" style="color: ${defaultConfig.text_color};"> b  </label>
+                <input type="text" id="loginUsername" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:border-blue-500 transition-all"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};">
+              </div>
+              
+              <div class="slide-up" style="animation-delay: 0.1s;">
+                <label class="block font-semibold mb-2" style="color: ${defaultConfig.text_color};"> K X</label>
+                <input type="password" id="loginPassword" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:border-blue-500 transition-all"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};">
+              </div>
+              
+              <button type="submit" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px; animation-delay: 0.2s;">
+                 n J
+              </button>
+            </form>
+            
+            <button onclick="currentPage='register'; render();" 
+              class="w-full mt-4 py-4 rounded-xl font-bold transition-all transform hover:scale-105 btn-scale slide-up"
+              style="background: ${defaultConfig.primary_color}; color: white; font-size: ${fontSize * 1.1}px; animation-delay: 0.3s;">
+                 U s b  
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderRegister() {
+      return `
+        <div class="min-h-full flex items-center justify-center p-4 page-transition">
+          <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md bounce-in" style="font-size: ${fontSize}px;">
+            <h1 class="text-center font-bold mb-8" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">   U b  </h1>
+            
+            <form id="registerForm" class="space-y-6">
+              <div class="slide-up">
+                <label class="block font-semibold mb-2" style="color: ${defaultConfig.text_color};"> b  </label>
+                <input type="text" id="regUsername" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:border-blue-500"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};">
+              </div>
+              
+              <div class="slide-up" style="animation-delay: 0.1s;">
+                <label class="block font-semibold mb-2" style="color: ${defaultConfig.text_color};"> K X</label>
+                <input type="password" id="regPassword" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:border-blue-500"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};">
+              </div>
+              
+              <div class="slide-up" style="animation-delay: 0.2s;">
+                <label class="block font-semibold mb-2" style="color: ${defaultConfig.text_color};">  ܦW  </label>
+                <input type="text" id="regDisplayName" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:border-blue-500"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};">
+              </div>
+              
+              <button type="submit" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.1}px; animation-delay: 0.3s;">
+                   U
+              </button>
+            </form>
+            
+            <button onclick="currentPage='login'; render();" 
+              class="w-full mt-4 py-4 rounded-xl font-bold transition-all transform hover:scale-105 btn-scale"
+              style="background: ${defaultConfig.button_color}; color: white; font-size: ${fontSize * 1.1}px;">
+                ^ n J
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderAdmin() {
+      return `
+        <div class="min-h-full p-4 page-transition">
+          <div class="max-w-7xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <div class="flex justify-between items-center mb-8">
+                <h1 class="font-bold" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};"> ޲z    x</h1>
+                <button onclick="currentUser=null; currentPage='login'; render();" 
+                  class="px-6 py-3 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                  style="background: ${defaultConfig.button_color}; font-size: ${fontSize}px;">
+                   n X
+                </button>
+              </div>
+              
+              <div class="overflow-x-auto slide-up">
+                <table class="w-full border-collapse">
+                  <thead>
+                    <tr style="background: ${defaultConfig.primary_color};">
+                      <th class="px-4 py-3 text-left text-white font-bold" style="font-size: ${fontSize}px;"> b  </th>
+                      <th class="px-4 py-3 text-left text-white font-bold" style="font-size: ${fontSize}px;">  ܦW  </th>
+                      <th class="px-4 py-3 text-left text-white font-bold" style="font-size: ${fontSize}px;">     i  </th>
+                      <th class="px-4 py-3 text-left text-white font-bold" style="font-size: ${fontSize}px;">     Ӫ </th>
+                      <th class="px-4 py-3 text-left text-white font-bold" style="font-size: ${fontSize}px;"> `???  </th>
+                      <th class="px-4 py-3 text-left text-white font-bold" style="font-size: ${fontSize}px;"> C      </th>
+                      <th class="px-4 py-3 text-left text-white font-bold" style="font-size: ${fontSize}px;">   U ɶ </th>
+                      <th class="px-4 py-3 text-left text-white font-bold" style="font-size: ${fontSize}px;"> ̫ n J</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${allUsers.map((user, index) => `
+                      <tr class="${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}" style="border-bottom: 1px solid #e5e7eb;">
+                        <td class="px-4 py-3" style="font-size: ${fontSize * 0.9}px;">${user.username}</td>
+                        <td class="px-4 py-3" style="font-size: ${fontSize * 0.9}px;">${user.display_name}</td>
+                        <td class="px-4 py-3" style="font-size: ${fontSize * 0.9}px;">${user.growth_progress}%</td>
+                        <td class="px-4 py-3" style="font-size: ${fontSize * 0.9}px;">${user.completed_plants || 0}   </td>
+                        <td class="px-4 py-3" style="font-size: ${fontSize * 0.9}px;">${user.total_nutrients}</td>
+                        <td class="px-4 py-3" style="font-size: ${fontSize * 0.9}px;">${user.games_completed}</td>
+                        <td class="px-4 py-3" style="font-size: ${fontSize * 0.9}px;">${new Date(user.created_at).toLocaleDateString()}</td>
+                        <td class="px-4 py-3" style="font-size: ${fontSize * 0.9}px;">${new Date(user.last_login).toLocaleDateString()}</td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+                ${allUsers.length === 0 ? `
+                  <div class="text-center py-12" style="color: ${defaultConfig.text_color}; font-size: ${fontSize * 1.2}px;">
+                     ثe L   U ϥΪ 
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderHome() {
+      const plantEmoji = getPlantStage(currentUser.growth_progress);
+      const completedPlants = currentUser.completed_plants || 0;
+      
+      return `
+        <div class="min-h-full p-4 page-transition">
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in main-content">
+              <div class="flex justify-between items-center mb-6">
+                <h1 class="font-bold pulse-animation" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">${defaultConfig.app_title}</h1>
+                <button onclick="currentPage='settings'; render();" 
+                  class="px-6 py-3 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                  style="background: ${defaultConfig.button_color}; font-size: ${fontSize}px;">
+                  ??  ] w
+                </button>
+              </div>
+              
+              <div class="text-center mb-6 slide-up">
+                <p class="font-semibold" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color};">${defaultConfig.welcome_message} ${currentUser.display_name}</p>
+              </div>
+              
+              <button onclick="currentPage='survey'; render();" 
+                class="w-full mb-8 py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                style="background: ${defaultConfig.accent_color}; font-size: ${fontSize * 1.2}px; animation-delay: 0.1s;">
+                ?  ${defaultConfig.survey_button_text}
+              </button>
+              
+              ${completedPlants > 0 ? `
+                <div class="text-center mb-6 slide-up" style="animation-delay: 0.2s;">
+                  <p class="font-bold mb-3" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.primary_color};">?   w     ${completedPlants}  ʴӪ </p>
+                  <div class="flex justify-center gap-3 flex-wrap">
+                    ${Array(Math.min(completedPlants, 10)).fill('? ').map((plant, i) => 
+                      `<span class="float-animation" style="font-size: ${fontSize * 3}px; animation-delay: ${i * 0.1}s;">${plant}</span>`
+                    ).join('')}
+                    ${completedPlants > 10 ? `<span style="font-size: ${fontSize * 1.5}px; color: ${defaultConfig.text_color}; align-self: center;">+${completedPlants - 10}</span>` : ''}
+                  </div>
+                </div>
+              ` : ''}
+              
+              <div class="text-center mb-8 slide-up" style="animation-delay: 0.3s;">
+                <div class="inline-block float-animation" style="font-size: ${fontSize * 12}px;">
+                  ${plantEmoji}
+                </div>
+              </div>
+              
+              <div class="mb-8 slide-up" style="animation-delay: 0.4s;">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-semibold" style="font-size: ${fontSize * 1.1}px; color: ${defaultConfig.text_color};">${defaultConfig.progress_label}</span>
+                  <span class="font-bold" style="font-size: ${fontSize * 1.1}px; color: ${defaultConfig.primary_color};">${currentUser.growth_progress}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-8 overflow-hidden">
+                  <div class="h-full rounded-full transition-all duration-500 pulse-animation" 
+                    style="width: ${currentUser.growth_progress}%; background: linear-gradient(90deg, ${defaultConfig.primary_color}, ${defaultConfig.accent_color});"></div>
+                </div>
+              </div>
+              
+              <div class="grid grid-cols-1 gap-4 mb-6">
+                <button onclick="currentPage='health'; render();" 
+                  class="py-6 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: #ec4899; font-size: ${fontSize * 1.2}px; animation-delay: 0.5s;">
+                  ?  ${defaultConfig.health_section_title}
+                </button>
+                <button onclick="currentPage='games'; render();" 
+                  class="py-6 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.2}px; animation-delay: 0.6s;">
+                  ?  ${defaultConfig.games_section_title}
+                </button>
+                <button onclick="currentPage='parks'; render();" 
+                  class="py-6 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: #10b981; font-size: ${fontSize * 1.2}px; animation-delay: 0.7s;">
+                  ? ? ${defaultConfig.park_section_title}
+                </button>
+                <button onclick="currentPage='emergency'; render();" 
+                  class="py-6 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: #ef4444; font-size: ${fontSize * 1.2}px; animation-delay: 0.8s;">
+                  ?  ${defaultConfig.emergency_title}
+                </button>
+              </div>
+              
+              <div class="text-center slide-up" style="animation-delay: 0.9s;">
+                <p style="font-size: ${fontSize * 0.9}px; color: ${defaultConfig.text_color};"> w     ${currentUser.games_completed}    C  </p>
+              </div>
+              
+              <button onclick="currentUser=null; currentPage='login'; render();" 
+                class="w-full mt-6 py-3 rounded-xl font-bold transition-all transform hover:scale-105 btn-scale"
+                style="background: #ef4444; color: white; font-size: ${fontSize}px;">
+                 n X
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderGames() {
+      return `
+        <div class="min-h-full p-4 page-transition">
+          <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-8 text-center pulse-animation" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">?  ${defaultConfig.games_section_title}</h1>
+              
+              <div class="grid grid-cols-1 gap-6 mb-6">
+                <button onclick="currentPage='memory'; render();" 
+                  class="py-8 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.3}px;">
+                  ?    G O  <br>
+                  <span style="font-size: ${fontSize * 0.9}px; opacity: 0.9;"> O   G   Ǩô          Τ@  </span>
+                </button>
+                
+                <button onclick="currentPage='math'; render();" 
+                  class="py-8 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.3}px; animation-delay: 0.1s;">
+                  ?    G  N<br>
+                  <span style="font-size: ${fontSize * 0.9}px; opacity: 0.9;"> p  ??? G [   D          ??  </span>
+                </button>
+                
+                <button onclick="currentPage='matching'; render();" 
+                  class="py-8 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: ${defaultConfig.accent_color}; font-size: ${fontSize * 1.3}px; animation-delay: 0.2s;">
+                  ?    G t  <br>
+                  <span style="font-size: ${fontSize * 0.9}px; opacity: 0.9;">  X ۦP    G       Τ@  </span>
+                </button>
+              </div>
+              
+              <button onclick="currentPage='home'; render();" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                  ^ D  
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderSettings() {
+      return `
+        <div class="min-h-full p-4 page-transition">
+          <div class="max-w-2xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-8 text-center" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};"> ] w</h1>
+              
+              <div class="mb-8 slide-up">
+                <label class="block font-semibold mb-4" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};"> r  j p</label>
+                <input type="range" id="fontSizeSlider" min="14" max="28" value="${fontSize}" 
+                  class="w-full h-3 rounded-lg appearance-none cursor-pointer"
+                  style="background: linear-gradient(90deg, ${defaultConfig.primary_color}, ${defaultConfig.accent_color});">
+                <div class="flex justify-between mt-2">
+                  <span style="font-size: 14px;"> p</span>
+                  <span style="font-size: ${fontSize}px;" id="fontSizeDisplay">${fontSize}px</span>
+                  <span style="font-size: 28px;"> j</span>
+                </div>
+              </div>
+              
+              <button onclick="currentPage='home'; render();" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                  ^ D  
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderSurvey() {
+      if (!window.kahootState) {
+        window.kahootState = {
+          currentQuestion: 0,
+          correctCount: 0,
+          answered: false
+        };
+      }
+      
+      const questions = [
+        {
+          question: "Q1 G аݳo ̷| }  ???  ",
+          image: "? ? ? ",
+          options: ["? ", "? ", "? "],
+          correct: 0,
+          colors: ["#f97316", "#eab308", "#ef4444"]
+        },
+        {
+          question: "Q2 G o ̬O    ",
+          image: "? ?",
+          options: ["? ", "? ", "? "],
+          correct: 0,
+          colors: ["#f97316", "#eab308", "#ef4444"]
+        },
+        {
+          question: "Q3 G Ы  U A ݨ쪺 Ʀr",
+          image: "26",
+          options: ["20", "26"],
+          correct: 1,
+          colors: ["#3b82f6", "#10b981"]
+        },
+        {
+          question: "Q4 G A/ p   Ѱ  F   ӹB  ",
+          image: "? ?  ?? ?  ?? ?  ?",
+          options: ["? ", "? ", "? "],
+          correct: 0,
+          colors: ["#f97316", "#eab308", "#ef4444"]
+        },
+        {
+          question: "Q5 G A/ p { b b   Ӥ   ",
+          image: "? ",
+          options: ["? ", "? ", "? "],
+          correct: 0,
+          colors: ["#f97316", "#eab308", "#ef4444"]
+        }
+      ];
+      
+      const state = window.kahootState;
+      const currentQ = questions[state.currentQuestion];
+      
+      if (state.currentQuestion >= questions.length) {
+        const totalReward = state.correctCount * 15;
+        return `
+          <div class="min-h-full p-4 page-transition flex items-center justify-center" style="background: linear-gradient(135deg, ${defaultConfig.primary_color}, ${defaultConfig.button_color});">
+            <div class="max-w-2xl w-full">
+              <div class="bg-white rounded-3xl shadow-2xl p-8 text-center bounce-in">
+                <div class="text-center mb-6" style="font-size: ${fontSize * 8}px;">? </div>
+                <h1 class="font-bold mb-4 pulse-animation" style="font-size: ${fontSize * 2.5}px; color: ${defaultConfig.primary_color};">   ߧ    I</h1>
+                <div class="mb-8">
+                  <p style="font-size: ${fontSize * 1.5}px; color: ${defaultConfig.text_color};"> A    F ${state.correctCount}  D I</p>
+                </div>
+                <div class="mb-8 p-6 rounded-xl" style="background: linear-gradient(135deg, ${defaultConfig.primary_color}, ${defaultConfig.accent_color});">
+                  <div class="text-center mb-4" style="font-size: ${fontSize * 4}px;">? </div>
+                  <p class="font-bold text-white" style="font-size: ${fontSize * 1.5}px;">  o ${state.correctCount}  ] ή </p>
+                  <p class="text-white" style="font-size: ${fontSize * 1.2}px; margin-top: 8px;">     i   +${totalReward}%</p>
+                </div>
+                <button onclick="finishKahoot();" 
+                  class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                  style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.2}px;">
+                    ^ D  
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      if (state.answered) {
+        return `
+          <div class="min-h-full p-4 page-transition flex items-center justify-center" style="background: ${state.wasCorrect ? '#10b981' : '#ef4444'};">
+            <div class="max-w-2xl w-full">
+              <div class="bg-white rounded-3xl shadow-2xl p-8 text-center bounce-in">
+                <div class="text-center mb-6" style="font-size: ${fontSize * 10}px;">${state.wasCorrect ? '?' : '?'}</div>
+                <h1 class="font-bold mb-8" style="font-size: ${fontSize * 2.5}px; color: ${state.wasCorrect ? '#10b981' : '#ef4444'};">
+                  ${state.wasCorrect ? '   ߵ   I' : '     F I'}
+                </h1>
+                ${state.wasCorrect ? `
+                  <div class="mb-6 p-6 rounded-xl" style="background: linear-gradient(135deg, ${defaultConfig.primary_color}, ${defaultConfig.accent_color});">
+                    <div class="text-center mb-3" style="font-size: ${fontSize * 5}px;">? </div>
+                    <p class="font-bold text-white" style="font-size: ${fontSize * 1.8}px;">  o ήƤ@ ]</p>
+                  </div>
+                ` : `
+                  <p style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color}; margin-bottom: 32px;">   T   ׬O G${currentQ.options[currentQ.correct]}</p>
+                `}
+                <div class="mb-6 p-4 rounded-xl" style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.primary_color};">
+                  <p class="font-bold" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color};">? ${state.correctCount} ??   T</p>
+                </div>
+                <button onclick="nextKahootQuestion();" 
+                  class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale pulse-animation"
+                  style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.2}px;">
+                   U @ D ??
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: linear-gradient(135deg, ${defaultConfig.primary_color}, ${defaultConfig.button_color});">
+          <div class="max-w-3xl mx-auto">
+            <div class="mb-4 flex justify-between items-center">
+              <div class="bg-white px-6 py-3 rounded-xl shadow-lg bounce-in">
+                <p class="font-bold" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};"> D   ${state.currentQuestion + 1}/${questions.length}</p>
+              </div>
+              <div class="bg-white px-6 py-3 rounded-xl shadow-lg bounce-in" style="animation-delay: 0.1s;">
+                <p class="font-bold" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.primary_color};">? ${state.correctCount}  D</p>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl shadow-2xl p-8 mb-6 bounce-in" style="animation-delay: 0.2s;">
+              <h1 class="font-bold mb-6 text-center pulse-animation" style="font-size: ${fontSize * 1.8}px; color: ${defaultConfig.text_color};">
+                ${currentQ.question}
+              </h1>
+              <div class="text-center mb-6" style="font-size: ${fontSize * 8}px;">
+                ${currentQ.image}
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-4">
+              ${currentQ.options.map((option, index) => `
+                <button onclick="answerKahoot(${index});" 
+                  class="py-8 rounded-2xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up shadow-xl"
+                  style="background: ${currentQ.colors[index]}; font-size: ${fontSize * 1.5}px; animation-delay: ${(index + 3) * 0.1}s;">
+                  ${option}
+                </button>
+              `).join('')}
+            </div>
+            
+            <button onclick="currentPage='home'; window.kahootState = null; render();" 
+              class="w-full mt-6 py-3 rounded-xl font-bold transition-all transform hover:scale-105 btn-scale"
+              style="background: white; color: ${defaultConfig.button_color}; font-size: ${fontSize}px;">
+                ?? C  
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    
+    window.answerKahoot = function(selectedIndex) {
+      if (!window.kahootState || window.kahootState.answered) return;
+      
+      const state = window.kahootState;
+      
+      const questions = [
+        { correct: 0 },
+        { correct: 0 },
+        { correct: 1 },
+        { correct: 0 },
+        { correct: 0 }
+      ];
+      
+      const currentQ = questions[state.currentQuestion];
+      const isCorrect = selectedIndex === currentQ.correct;
+      
+      state.answered = true;
+      state.wasCorrect = isCorrect;
+      
+      if (isCorrect) {
+        state.correctCount += 1;
+      }
+      
+      render();
+    };
+    
+    window.nextKahootQuestion = function() {
+      if (!window.kahootState) return;
+      
+      window.kahootState.currentQuestion += 1;
+      window.kahootState.answered = false;
+      
+      render();
+    };
+    
+    window.finishKahoot = async function() {
+      if (!window.kahootState || !currentUser || currentUser.isAdmin) {
+        currentPage = 'home';
+        window.kahootState = null;
+        render();
+        return;
+      }
+      
+      const progressIncrease = window.kahootState.correctCount * 15;
+      await addNutrients(progressIncrease);
+      
+      currentPage = 'home';
+      window.kahootState = null;
+      render();
+    };
+    
+    function renderMemoryGame() {
+      if (!window.memoryState) {
+        const sequence = [];
+        for (let i = 0; i < 3; i++) {
+          sequence.push(FRUIT_EMOJIS[Math.floor(Math.random() * FRUIT_EMOJIS.length)]);
+        }
+        window.memoryState = {
+          sequence: sequence,
+          phase: 'memorize',
+          userSequence: []
+        };
+      }
+      
+      if (window.memoryState.phase === 'memorize') {
+        return `
+          <div class="min-h-full p-4 page-transition">
+            <div class="max-w-3xl mx-auto">
+              <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+                <h1 class="font-bold mb-6 text-center" style="font-size: ${fontSize * 1.8}px; color: ${defaultConfig.primary_color};">?    G O  </h1>
+                
+                <div class="text-center mb-8 slide-up">
+                  <p class="mb-6" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color}; font-weight: bold;"> аO  o Ǥ G     ǡG</p>
+                  <div class="flex justify-center gap-4 mb-6 flex-wrap">
+                    ${window.memoryState.sequence.map((fruit, i) => 
+                      `<span class="bounce-in" style="font-size: ${fontSize * 5}px; display: inline-block; animation-delay: ${i * 0.15}s;">${fruit}</span>`
+                    ).join('')}
+                  </div>
+                  <p style="font-size: ${fontSize * 1.1}px; color: ${defaultConfig.accent_color};"> J ӰO  I ݷ| n     </p>
+                </div>
+                
+                <button onclick="startMemoryTest();" 
+                  class="w-full mb-4 py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale pulse-animation"
+                  style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.2}px;">
+                   ڰO  F A } l    I
+                </button>
+                
+                <button onclick="currentPage='games'; window.memoryState = null; render();" 
+                  class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                  style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                    ^ C     
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        return `
+          <div class="min-h-full p-4 page-transition">
+            <div class="max-w-3xl mx-auto">
+              <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+                <h1 class="font-bold mb-6 text-center" style="font-size: ${fontSize * 1.8}px; color: ${defaultConfig.primary_color};">?    G O д   </h1>
+                
+                <div class="text-center mb-8 slide-up">
+                  <p class="mb-6" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color}; font-weight: bold;"> Ы  Ӷ    I   G G</p>
+                  
+                  <div class="mb-6 p-4 rounded-xl" style="background: #f3f4f6;">
+                    <p style="font-size: ${fontSize * 1.1}px; color: ${defaultConfig.text_color};">
+                       i סG${window.memoryState.userSequence.length} / ${window.memoryState.sequence.length}
+                    </p>
+                    <div class="flex justify-center gap-3 mt-3 flex-wrap">
+                      ${window.memoryState.userSequence.map((fruit, i) => 
+                        `<span class="bounce-in" style="font-size: ${fontSize * 3.5}px; display: inline-block; animation-delay: ${i * 0.1}s;">${fruit}</span>`
+                      ).join('')}
+                    </div>
+                  </div>
+                  
+                  <div class="grid grid-cols-4 gap-4 max-w-md mx-auto">
+                    ${FRUIT_EMOJIS.map((fruit, i) => `
+                      <button onclick="selectMemoryFruit('${fruit}');" 
+                        class="py-6 rounded-xl transition-all transform hover:scale-110 btn-scale bounce-in"
+                        style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.primary_color}; font-size: ${fontSize * 3.5}px; animation-delay: ${i * 0.05}s;">
+                        ${fruit}
+                      </button>
+                    `).join('')}
+                  </div>
+                </div>
+                
+                <button onclick="currentPage='games'; window.memoryState = null; render();" 
+                  class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                  style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                        
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+    
+    function renderMathGame() {
+      if (!window.mathProgress) {
+        window.mathProgress = { correct: 0, total: 0 };
+      }
+      
+      if (!window.currentMathQuestion) {
+        const fruit1 = FRUIT_EMOJIS[Math.floor(Math.random() * FRUIT_EMOJIS.length)];
+        const fruit2 = FRUIT_EMOJIS[Math.floor(Math.random() * FRUIT_EMOJIS.length)];
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+        window.currentMathQuestion = { fruit1, fruit2, num1, num2, answer: num1 + num2 };
+      }
+      
+      const q = window.currentMathQuestion;
+      
+      return `
+        <div class="min-h-full p-4 page-transition">
+          <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-6 text-center" style="font-size: ${fontSize * 1.8}px; color: ${defaultConfig.primary_color};">?    G  N</h1>
+              
+              <div class="text-center mb-4 slide-up">
+                <p style="font-size: ${fontSize * 1.1}px; color: ${defaultConfig.text_color};">
+                   i סG${window.mathProgress.correct} / 3  D   T
+                </p>
+              </div>
+              
+              <div class="text-center mb-8 slide-up">
+                <p class="mb-6" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};"> p ⵪ סG</p>
+                <div class="flex justify-center items-center gap-6 mb-8 flex-wrap">
+                  <span class="bounce-in" style="font-size: ${fontSize * 4}px; display: inline-block;">${q.fruit1}</span>
+                  <span style="font-size: ${fontSize * 2.5}px; color: ${defaultConfig.text_color}; font-weight: bold;">${q.num1}</span>
+                  <span style="font-size: ${fontSize * 2.5}px; color: ${defaultConfig.text_color}; font-weight: bold;">+</span>
+                  <span class="bounce-in" style="font-size: ${fontSize * 4}px; display: inline-block; animation-delay: 0.1s;">${q.fruit2}</span>
+                  <span style="font-size: ${fontSize * 2.5}px; color: ${defaultConfig.text_color}; font-weight: bold;">${q.num2}</span>
+                  <span style="font-size: ${fontSize * 2.5}px; color: ${defaultConfig.text_color}; font-weight: bold;">=</span>
+                  <span style="font-size: ${fontSize * 2.5}px; color: ${defaultConfig.primary_color}; font-weight: bold;">?</span>
+                </div>
+                <input type="number" id="mathAnswer" 
+                  class="w-32 px-4 py-3 border-4 rounded-xl text-center focus:outline-none"
+                  style="font-size: ${fontSize * 1.5}px; border-color: ${defaultConfig.primary_color};"
+                  placeholder="?">
+              </div>
+              
+              <button onclick="checkMathAnswer();" 
+                class="w-full mb-4 py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.1}px;">
+                 T {    
+              </button>
+              
+              <button onclick="currentPage='games'; window.mathProgress = null; window.currentMathQuestion = null; render();" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                  ^ C     
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderMatchingGame() {
+      if (!window.matchingCards) {
+        const fruits = [];
+        for (let i = 0; i < 4; i++) {
+          const fruit = FRUIT_EMOJIS[i];
+          fruits.push(fruit, fruit);
+        }
+        fruits.sort(() => Math.random() - 0.5);
+        window.matchingCards = fruits.map((fruit, id) => ({ id, fruit, matched: false }));
+        window.matchingState = { flipped: [], matches: 0, processing: false };
+      }
+      
+      return `
+        <div class="min-h-full p-4 page-transition">
+          <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-6 text-center" style="font-size: ${fontSize * 1.8}px; color: ${defaultConfig.primary_color};">?    G t  </h1>
+              
+              <div class="text-center mb-6 slide-up">
+                <p style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};">  X ۦP    G t  G${window.matchingState.matches} / 4</p>
+              </div>
+              
+              <div class="grid grid-cols-4 gap-4 mb-8" id="matchingGrid">
+                ${window.matchingCards.map((card, i) => `
+                  <div class="relative aspect-square">
+                    <div class="card-flip w-full h-full cursor-pointer ${card.matched || window.matchingState.flipped.includes(card.id) ? 'flipped' : ''}" 
+                      id="card-${card.id}" 
+                      onclick="flipMatchCard(${card.id})" 
+                      data-fruit="${card.fruit}"
+                      data-matched="${card.matched}">
+                      <div class="card-front bounce-in" 
+                        style="background: ${defaultConfig.primary_color}; animation-delay: ${i * 0.05}s;">
+                        <span style="font-size: ${fontSize * 2.5}px; color: white; font-weight: bold;">?</span>
+                      </div>
+                      <div class="card-back" 
+                        style="background: ${defaultConfig.secondary_color}; border: 3px solid ${card.matched ? defaultConfig.accent_color : defaultConfig.primary_color};">
+                        <span style="font-size: ${fontSize * 3.5}px;">${card.fruit}</span>
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+              
+              <button onclick="currentPage='games'; window.matchingCards = null; window.matchingState = null; render();" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                  ^ C     
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function render() {
+      const app = document.getElementById('app');
+      
+      let content = '';
+      switch(currentPage) {
+        case 'login':
+          c|<!doctype html>
+<html lang="zh-TW">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grandpa GO - 長者健康互動應用</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./Grandpa GO_files/leaflet.css">
+  <script src="./Grandpa GO_files/leaflet.js.下載"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    
+    html, body, #app {
+      height: 100%;
+      width: 100%;
+      overflow-x: hidden;
+    }
+    
+    .page-transition {
+      /* 移除動畫 */
+    }
+    
+    .bounce-in {
+      animation: bounceIn 0.15s ease-out;
+    }
+    
+    @keyframes bounceIn {
+      0% { transform: scale(0.97); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .slide-up {
+      animation: slideUp 0.12s ease-out;
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(6px); opacity: 0.7; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.015); }
+    }
+    
+    .btn-scale:active {
+      transform: scale(0.95) !important;
+    }
+    
+    .game-card {
+      transition: all 0.09s ease;
+    }
+    
+    .game-card:hover {
+      transform: translateY(-1.5px);
+      box-shadow: 0 3px 9px rgba(0,0,0,0.2);
+    }
+    
+    .match-card {
+      width: 120px;
+      height: 120px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    
+    .match-card .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.18s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    
+    .match-card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      font-size: 48px;
+    }
+    
+    .card-back {
+      transform: rotateY(180deg);
+    }
+    
+    .growth-bar {
+      position: relative;
+      overflow: hidden;
+      border-radius: 9999px;
+    }
+    
+    .growth-fill {
+      transition: width 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .kahoot-option {
+      transition: all 0.09s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .kahoot-option:active {
+      transform: scale(0.95);
+    }
+    
+    .kahoot-option::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: translate(-50%, -50%);
+      transition: width 0.18s, height 0.18s;
+    }
+    
+    .kahoot-option:active::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .leaderboard-entry {
+      animation: slideInRight 0.15s ease-out;
+    }
+    
+    @keyframes slideInRight {
+      from {
+        transform: translateX(-15px);
+        opacity: 0.7;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="file:///C:/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="file:///C:/_sdk/element_sdk.js" type="text/javascript"></script>
+ 
+ 
+  
+  <script>
+    // ========== localStorage 資料管理系統 ==========
+    const STORAGE_KEY = 'grandpa_go_users';
+    const CURRENT_USER_KEY = 'grandpa_go_current_user';
+    const FONT_SIZE_KEY = 'grandpa_go_font_size';
+    
+    // 從 localStorage 載入所有使用者
+    function loadUsersFromStorage() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : [];
+      } catch (error) {
+        console.error('載入使用者資料失敗:', error);
+        return [];
+      }
+    }
+    
+    // 儲存所有使用者到 localStorage
+    function saveUsersToStorage(users) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+        return true;
+      } catch (error) {
+        console.error('儲存使用者資料失敗:', error);
+        return false;
+      }
+    }
+    
+    // 儲存當前登入使用者
+    function saveCurrentUser(user) {
+      try {
+        localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+      } catch (error) {
+        console.error('儲存當前使用者失敗:', error);
+      }
+    }
+    
+    // 載入當前登入使用者
+    function loadCurrentUser() {
+      try {
+        const data = localStorage.getItem(CURRENT_USER_KEY);
+        return data ? JSON.parse(data) : null;
+      } catch (error) {
+        console.error('載入當前使用者失敗:', error);
+        return null;
+      }
+    }
+    
+    // 清除當前登入使用者
+    function clearCurrentUser() {
+      localStorage.removeItem(CURRENT_USER_KEY);
+    }
+    
+    // 更新使用者資料
+    function updateUserInStorage(username, updates) {
+      const users = loadUsersFromStorage();
+      const userIndex = users.findIndex(u => u.username === username);
+      
+      if (userIndex !== -1) {
+        users[userIndex] = { ...users[userIndex], ...updates };
+        saveUsersToStorage(users);
+        
+        // 如果是當前使用者，也更新當前使用者快取
+        const currentUser = loadCurrentUser();
+        if (currentUser && currentUser.username === username) {
+          saveCurrentUser(users[userIndex]);
+        }
+        
+        return users[userIndex];
+      }
+      return null;
+    }
+    
+    // 建立新使用者
+    function createUserInStorage(userData) {
+      const users = loadUsersFromStorage();
+      
+      // 檢查是否已存在
+      if (users.find(u => u.username === userData.username)) {
+        return { success: false, message: '此帳號已存在' };
+      }
+      
+      // 新增使用者
+      const newUser = {
+        ...userData,
+        created_at: new Date().toISOString(),
+        last_login: new Date().toISOString()
+      };
+      
+      users.push(newUser);
+      
+      if (saveUsersToStorage(users)) {
+        return { success: true, user: newUser };
+      } else {
+        return { success: false, message: '儲存失敗' };
+      }
+    }
+    
+    // 刪除使用者
+    function deleteUserFromStorage(username) {
+      const users = loadUsersFromStorage();
+      const filteredUsers = users.filter(u => u.username !== username);
+      return saveUsersToStorage(filteredUsers);
+    }
+    
+    // ========== 應用程式   邏   ==========
+    
+    let allUsers = loadUsersFromStorage();
+    let currentUser = loadCurrentUser();
+    let currentPage = currentUser ? (currentUser.isAdmin ? 'admin' : 'home') : 'login';
+    let fontSize = parseInt(localStorage.getItem(FONT_SIZE_KEY)) || 16;
+    
+    const ADMIN_USERNAME = 'admin';
+    const ADMIN_PASSWORD = 'admin';
+    
+    const KAHOOT_QUESTIONS = [
+      {
+        question: "Q1：請問這裡會開什麼花？",
+        options: ["🔶", "🟡", "🟥"],
+        colors: ["#ff9500", "#ffd700", "#dc143c"],
+        answer: 2,
+        image: "🌸"
+      },
+      {
+        question: "Q2：這裡是哪裡？",
+        options: ["🔶", "🟡", "🟥"],
+        colors: ["#ff9500", "#ffd700", "#dc143c"],
+        answer: 2,
+        image: "🏞️"
+      },
+      {
+        question: "Q3：請按下你看到的數字",
+        options: ["20", "26"],
+        colors: ["#3498db", "#2ecc71"],
+        answer: 1,
+        image: "🔢"
+      },
+      {
+        question: "Q4：你/妳今天做了哪個運動？",
+        options: ["🔶", "🟡", "🟥"],
+        colors: ["#ff9500", "#ffd700", "#dc143c"],
+        answer: 0,
+        image: "🏃"
+      },
+      {
+        question: "Q5：你/妳現在在哪個公園？",
+        options: ["🔶", "🟡", "🟥"],
+        colors: ["#ff9500", "#ffd700", "#dc143c"],
+        answer: 2,
+        image: "🌳"
+      }
+    ];
+    
+    const PARKS = [
+      { id: 1, name: "中正公園", rating: 4.8, features: "海景、步道、健身器材", lat: 25.1380, lng: 121.7410 },
+      { id: 2, name: "暖暖運動公園", rating: 4.5, features: "運動場、籃球場、兒童遊樂區", lat: 25.0993, lng: 121.7392 },
+      { id: 3, name: "安樂公園", rating: 4.3, features: "綠地、涼亭、散步道", lat: 25.1289, lng: 121.7268 },
+      { id: 4, name: "七堵鐵道公園", rating: 4.6, features: "鐵道文化、休憩廣場", lat: 25.0938, lng: 121.7115 }
+    ];
+    
+    const MEMORY_FRUITS = ['🍎', '🍌', '🍊', '🍇', '🍓', '🍉'];
+    
+    const defaultConfig = {
+      app_title: "Grandpa GO",
+      welcome_message: "歡迎回來",
+      games_section_title: "健腦遊戲挑戰",
+      progress_label: "蘿蔔苗成長進度",
+      survey_button_text: "🏞️ 公園尋寶 Kahoot",
+      park_section_title: "基隆公園推薦",
+      health_section_title: "健康管理中心",
+      emergency_title: "緊急求助專線",
+      primary_color: "#10b981",
+      secondary_color: "#f0fdf4",
+      text_color: "#1f2937",
+      button_color: "#3b82f6",
+      accent_color: "#fbbf24"
+    };
+    
+    // 檢查服藥提醒
+    function checkMedicationReminder() {
+      if (!currentUser || currentUser.isAdmin) return;
+      
+      // 重新從 storage 載入使用者資料
+      const users = loadUsersFromStorage();
+      const userData = users.find(u => u.username === currentUser.username);
+      
+      if (!userData || !userData.medication_name || !userData.medication_time) return;
+      
+      const now = new Date();
+      const today = now.toLocaleDateString('zh-TW');
+      
+      if (userData.medication_completed && userData.medication_date === today) return;
+      
+      const [hours, minutes] = userData.medication_time.split(':');
+      const medicationTime = new Date();
+      medicationTime.setHours(parseInt(hours), parseInt(minutes), 0);
+      
+      const hoursDiff = (now - medicationTime) / (1000 * 60 * 60);
+      
+      if (hoursDiff >= 0 && hoursDiff <= 1) {
+        if (!document.getElementById('medicationOverlay')) {
+          showMedicationReminder(userData);
+        }
+      }
+    }
+    
+    function showMedicationReminder(userData) {
+      const overlay = document.createElement('div');
+      overlay.id = 'medicationOverlay';
+      overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        animation: fadeIn 0.3s ease-in;
+      `;
+      
+      overlay.innerHTML = `
+        <div style="background: white; padding: 32px; border-radius: 24px; max-width: 400px; text-align: center; animation: bounceIn 0.5s ease-out;">
+          <div style="font-size: 64px; margin-bottom: 16px;">⏰</div>
+          <h2 style="font-size: ${fontSize * 1.5}px; font-weight: bold; color: ${defaultConfig.primary_color}; margin-bottom: 16px;">服藥提醒</h2>
+          <p style="font-size: ${fontSize * 1.1}px; margin-bottom: 8px;">💊 ${userData.medication_name}</p>
+          <p style="font-size: ${fontSize}px; color: #6b7280; margin-bottom: 24px;">現在是 ${userData.medication_time} 該服藥的時間了！</p>
+          <button onclick="confirmMedication()" style="background: ${defaultConfig.primary_color}; color: white; padding: 16px 32px; border-radius: 12px; font-size: ${fontSize * 1.2}px; font-weight: bold; border: none; cursor: pointer; width: 100%;">
+            ✅ 確認已服藥（肥料一包 💩）
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(overlay);
+    }
+    
+    function handleLogin(username, password) {
+      const trimmedUsername = (username || '').trim();
+      const trimmedPassword = (password || '').trim();
+      
+      if (trimmedUsername === ADMIN_USERNAME && trimmedPassword === ADMIN_PASSWORD) {
+        currentUser = { username: ADMIN_USERNAME, isAdmin: true };
+        saveCurrentUser(currentUser);
+        currentPage = 'admin';
+        render();
+        return;
+      }
+      
+      allUsers = loadUsersFromStorage();
+      const user = allUsers.find(u => u.username === trimmedUsername && u.password === trimmedPassword);
+      
+      if (user) {
+        user.last_login = new Date().toISOString();
+        updateUserInStorage(user.username, { last_login: user.last_login });
+        
+        currentUser = user;
+        saveCurrentUser(currentUser);
+        currentPage = 'home';
+        render();
+      } else {
+        showMessage('❌ 帳號或密碼錯誤！', '#ef4444');
+      }
+    }
+    
+    function handleRegister(username, password, displayName) {
+      const newUser = {
+        username,
+        password,
+        display_name: displayName,
+        growth_progress: 0,
+        total_nutrients: 0,
+        games_completed: 0,
+        completed_plants: 0,
+        pesticides: 0,
+        fertilizers: 0,
+        medication_name: '',
+        medication_time: '',
+        medication_completed: false,
+        medication_date: ''
+      };
+      
+      const result = createUserInStorage(newUser);
+      
+      if (result.success) {
+        showMessage('✅ 註冊成功！請登入', defaultConfig.primary_color);
+        setTimeout(() => {
+          currentPage = 'login';
+          render();
+        }, 2000);
+      } else {
+        showMessage('❌ ' + result.message, '#ef4444');
+      }
+    }
+    
+    function handleLogout() {
+      currentUser = null;
+      clearCurrentUser();
+      currentPage = 'login';
+      render();
+    }
+    
+    function deleteUser(username) {
+      if (deleteUserFromStorage(username)) {
+        allUsers = loadUsersFromStorage();
+        showMessage('✅ 用戶已刪除', defaultConfig.primary_color);
+        render();
+      }
+    }
+    
+    function addPesticide() {
+      if (!currentUser || currentUser.isAdmin) return;
+      
+      const updates = {
+        pesticides: (currentUser.pesticides || 0) + 1,
+        games_completed: (currentUser.games_completed || 0) + 1
+      };
+      
+      const updatedUser = updateUserInStorage(currentUser.username, updates);
+      if (updatedUser) {
+        currentUser = updatedUser;
+        allUsers = loadUsersFromStorage();
+        return true;
+      }
+      return false;
+    }
+    
+    function addFertilizer() {
+      if (!currentUser || currentUser.isAdmin) return;
+      
+      const updates = {
+        fertilizers: (currentUser.fertilizers || 0) + 1,
+        games_completed: (currentUser.games_completed || 0) + 1
+      };
+      
+      const updatedUser = updateUserInStorage(currentUser.username, updates);
+      if (updatedUser) {
+        currentUser = updatedUser;
+        allUsers = loadUsersFromStorage();
+        return true;
+      }
+      return false;
+    }
+    
+    function showMessage(message, bgColor) {
+      const msg = document.createElement('div');
+      msg.textContent = message;
+      msg.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: ${bgColor}; color: white; padding: 16px 32px; border-radius: 12px; font-size: ${fontSize * 1.2}px; font-weight: bold; z-index: 10000;`;
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), 3000);
+    }
+    
+    function showCenterMessage(html, bgColor, duration = 2000) {
+      const msg = document.createElement('div');
+      msg.innerHTML = html;
+      msg.style.cssText = `position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: ${bgColor}; color: white; padding: 30px 50px; border-radius: 20px; font-size: ${fontSize}px; z-index: 10000; box-shadow: 0 10px 40px rgba(0,0,0,0.3);`;
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), duration);
+    }
+    
+    function vibrate(pattern) {
+      if (navigator.vibrate) {
+        navigator.vibrate(pattern);
+      }
+    }
+    
+    // ========== 渲染函數 ==========
+    
+    function renderLogin() {
+      return `
+        <div class="min-h-full flex items-center justify-center p-4" style="background: linear-gradient(135deg, ${defaultConfig.primary_color} 0%, ${defaultConfig.button_color} 100%);">
+          <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md bounce-in">
+            <div class="text-center mb-8">
+              <div class="text-6xl mb-4">👴</div>
+              <h1 class="font-bold mb-2 pulse-animation" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">
+                ${defaultConfig.app_title}
+              </h1>
+              <p style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">長者健康互動平台</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-6">
+              <div class="slide-up">
+                <label for="loginUsername" class="block font-semibold mb-2" style="color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">帳號</label>
+                <input type="text" id="loginUsername" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};"
+                  placeholder="請輸入帳號">
+              </div>
+              
+              <div class="slide-up" style="animation-delay: 0.1s;">
+                <label for="loginPassword" class="block font-semibold mb-2" style="color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">密碼</label>
+                <input type="password" id="loginPassword" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};"
+                  placeholder="請輸入密碼">
+              </div>
+              
+              <button type="submit" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.2}px; animation-delay: 0.2s;">
+                🔑 登入
+              </button>
+            </form>
+            
+            <div class="mt-6 text-center slide-up" style="animation-delay: 0.3s;">
+              <button onclick="currentPage='register'; render();" 
+                class="text-blue-600 font-semibold hover:underline"
+                style="font-size: ${fontSize}px;">
+                還沒有帳號？立即註冊 →
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderRegister() {
+      return `
+        <div class="min-h-full flex items-center justify-center p-4" style="background: linear-gradient(135deg, ${defaultConfig.button_color} 0%, ${defaultConfig.primary_color} 100%);">
+          <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md bounce-in">
+            <div class="text-center mb-8">
+              <div class="text-6xl mb-4">📝</div>
+              <h1 class="font-bold mb-2" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">新用戶註冊</h1>
+              <p style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">加入 Grandpa GO 開始健康生活</p>
+            </div>
+            
+            <form id="registerForm" class="space-y-6">
+              <div class="slide-up">
+                <label for="regUsername" class="block font-semibold mb-2" style="color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">帳號</label>
+                <input type="text" id="regUsername" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};"
+                  placeholder="請設定帳號">
+              </div>
+              
+              <div class="slide-up" style="animation-delay: 0.1s;">
+                <label for="regPassword" class="block font-semibold mb-2" style="color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">密碼</label>
+                <input type="password" id="regPassword" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};"
+                  placeholder="請設定密碼">
+              </div>
+              
+              <div class="slide-up" style="animation-delay: 0.2s;">
+                <label for="regDisplayName" class="block font-semibold mb-2" style="color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">顯示名稱</label>
+                <input type="text" id="regDisplayName" required 
+                  class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none"
+                  style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};"
+                  placeholder="你好：王大明">
+              </div>
+              
+              <button type="submit" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.2}px; animation-delay: 0.3s;">
+                ✅ 註冊
+              </button>
+            </form>
+            
+            <div class="mt-6 text-center slide-up" style="animation-delay: 0.4s;">
+              <button onclick="currentPage='login'; render();" 
+                class="text-blue-600 font-semibold hover:underline"
+                style="font-size: ${fontSize}px;">
+                ← 返回登入
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderAdmin() {
+      allUsers = loadUsersFromStorage();
+      const regularUsers = allUsers.filter(u => !u.isAdmin);
+      
+      return `
+        <div class="min-h-full p-4" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-6xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <div class="flex justify-between items-center mb-8">
+                <h1 class="font-bold pulse-animation" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">👨‍💼 管理員後台</h1>
+                <button onclick="handleLogout()" 
+                  class="px-6 py-3 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                  style="background: #ef4444; font-size: ${fontSize}px;">
+                  🚪 登出
+                </button>
+              </div>
+              
+              <div class="mb-6 p-6 rounded-xl" style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.primary_color};">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div class="text-center">
+                    <div style="font-size: ${fontSize * 2.5}px; font-weight: bold; color: ${defaultConfig.primary_color};">${regularUsers.length}</div>
+                    <div style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">註冊用戶數</div>
+                  </div>
+                  <div class="text-center">
+                    <div style="font-size: ${fontSize * 2.5}px; font-weight: bold; color: ${defaultConfig.button_color};">${regularUsers.reduce((sum, u) => sum + (u.completed_plants || 0), 0)}</div>
+                    <div style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">完成蘿蔔總數</div>
+                  </div>
+                  <div class="text-center">
+                    <div style="font-size: ${fontSize * 2.5}px; font-weight: bold; color: ${defaultConfig.accent_color};">${regularUsers.reduce((sum, u) => sum + (u.pesticides || 0), 0)}</div>
+                    <div style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">除蟲劑總數</div>
+                  </div>
+                  <div class="text-center">
+                    <div style="font-size: ${fontSize * 2.5}px; font-weight: bold; color: #10b981;">${regularUsers.reduce((sum, u) => sum + (u.fertilizers || 0), 0)}</div>
+                    <div style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">肥料總數</div>
+                  </div>
+                </div>
+              </div>
+              
+              <h2 class="font-bold mb-4" style="font-size: ${fontSize * 1.5}px; color: ${defaultConfig.text_color};">👥 用戶列表</h2>
+              
+              <div class="space-y-4" style="max-height: 600px; overflow-y: auto;">
+                ${regularUsers.length === 0 ? `
+                  <div class="text-center py-12">
+                    <div style="font-size: 64px; margin-bottom: 16px;">📭</div>
+                    <p style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};">目前還沒有用戶註冊</p>
+                  </div>
+                ` : regularUsers.map((user, index) => `
+                  <div class="p-6 rounded-xl transition-all hover:shadow-lg slide-up" 
+                    style="background: ${defaultConfig.secondary_color}; border: 2px solid ${defaultConfig.primary_color}; animation-delay: ${index * 0.05}s;">
+                    <div class="flex justify-between items-start">
+                      <div class="flex-1">
+                        <h3 class="font-bold mb-2" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};">
+                          👤 ${user.display_name || user.username}
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4 mb-3">
+                          <div>
+                            <p style="font-size: ${fontSize * 0.9}px; color: #6b7280;">帳號：${user.username}</p>
+                            <p style="font-size: ${fontSize * 0.9}px; color: #6b7280;">完成蘿蔔：${user.completed_plants || 0} 顆</p>
+                          </div>
+                          <div>
+                            <p style="font-size: ${fontSize * 0.9}px; color: #6b7280;">🐛 除蟲劑：${user.pesticides || 0}</p>
+                            <p style="font-size: ${fontSize * 0.9}px; color: #6b7280;">💩 肥料：${user.fertilizers || 0}</p>
+                          </div>
+                        </div>
+                        <div class="growth-bar" style="height: 24px; background: #e5e7eb;">
+                          <div class="growth-fill" style="width: ${user.growth_progress || 0}%; height: 100%; background: ${defaultConfig.primary_color}; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: ${fontSize * 0.85}px;">
+                            ${user.growth_progress || 0}%
+                          </div>
+                        </div>
+                      </div>
+                      <button onclick="deleteUser('${user.username}')" 
+                        class="ml-4 px-4 py-2 rounded-lg font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                        style="background: #ef4444; font-size: ${fontSize * 0.9}px;">
+                        🗑️ 刪除
+                      </button>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderHome() {
+      // 重新載入使   者資料
+      allUsers = loadUsersFromStorage();
+      const userData = allUsers.find(u => u.username === currentUser.username);
+      
+      if (userData) {
+        currentUser = userData;
+      }
+      
+      const progress = userData?.growth_progress || 0;
+      const completedPlants = userData?.completed_plants || 0;
+      
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 mb-6 bounce-in">
+              <div class="flex justify-between items-center mb-6">
+                <div>
+                  <h1 class="font-bold pulse-animation" style="font-size: ${fontSize * 1.8}px; color: ${defaultConfig.primary_color};">
+                    ${defaultConfig.welcome_message}，${userData?.display_name || currentUser.username}！
+                  </h1>
+                  <p style="font-size: ${fontSize}px; color: ${defaultConfig.text_color}; margin-top: 8px;">
+                    🏆 已完成 ${completedPlants} 顆蘿蔔
+                  </p>
+                </div>
+                <button onclick="handleLogout()" 
+                  class="px-6 py-3 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                  style="background: #ef4444; font-size: ${fontSize}px;">
+                  🚪 登出
+                </button>
+              </div>
+              
+              <div class="mb-8 p-6 rounded-xl" style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.primary_color};">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-bold" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};">
+                    ${progress < 20 ? '🌱' : progress < 40 ? '🌿' : progress < 60 ? '🥬' : progress < 80 ? '🥗' : '🥕'} ${defaultConfig.progress_label}
+                  </span>
+                  <span class="font-bold" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.primary_color};">
+                    ${progress}%
+                  </span>
+                </div>
+                
+                <div class="mb-4 text-center p-4 rounded-xl" style="background: white; border: 2px solid ${defaultConfig.primary_color};">
+                  <div style="font-size: ${fontSize * 4}px; margin-bottom: 8px;">
+                    ${progress < 20 ? '🌱' : progress < 40 ? '🌿' : progress < 60 ? '🥬' : progress < 80 ? '🥗' : '🥕'}
+                  </div>
+                  <div style="font-size: ${fontSize}px; font-weight: bold; color: ${defaultConfig.text_color};">
+                    ${progress < 20 ? '種子發芽' : progress < 40 ? '幼苗成長' : progress < 60 ? '葉菜茂盛' : progress < 80 ? '準備收成' : '完整蘿蔔了'}
+                  </div>
+                </div>
+                
+                <div class="growth-bar" style="height: 32px; background: #e5e7eb;">
+                  <div class="growth-fill" style="width: ${progress}%; height: 100%; background: ${defaultConfig.primary_color}; display: flex; align-items: center; padding-left: 12px; font-weight: bold; color: white; font-size: ${fontSize}px;">
+                    ${progress >= 10 ? progress + '%' : ''}
+                  </div>
+                </div>
+                
+                <div class="mt-3 grid grid-cols-5 gap-2 text-center" style="font-size: ${fontSize * 0.7}px; color: #6b7280;">
+                  <div style="opacity: ${progress >= 0 ? '1' : '0.3'};">
+                    <div style="font-size: ${fontSize * 1.2}px;">🌱</div>
+                    <div>發芽</div>
+                  </div>
+                  <div style="opacity: ${progress >= 20 ? '1' : '0.3'};">
+                    <div style="font-size: ${fontSize * 1.2}px;">🌿</div>
+                    <div>小苗</div>
+                  </div>
+                  <div style="opacity: ${progress >= 40 ? '1' : '0.3'};">
+                    <div style="font-size: ${fontSize * 1.2}px;">🥬</div>
+                    <div>茂盛</div>
+                  </div>
+                  <div style="opacity: ${progress >= 60 ? '1' : '0.3'};">
+                    <div style="font-size: ${fontSize * 1.2}px;">🥗</div>
+                    <div>收成</div>
+                  </div>
+                  <div style="opacity: ${progress >= 80 ? '1' : '0.3'};">
+                    <div style="font-size: ${fontSize * 1.2}px;">🥕</div>
+                    <div>完成</div>
+                  </div>
+                </div>
+                
+                ${completedPlants > 0 ? `
+                  <div class="mt-4 p-4 rounded-xl" style="background: white; border: 2px solid ${defaultConfig.accent_color};">
+                    <div style="font-size: ${fontSize}px; font-weight: bold; color: ${defaultConfig.text_color}; margin-bottom: 8px;">
+                      🥕 已收穫的完整蘿蔔！
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                      ${Array.from({length: Math.min(completedPlants, 20)}).map(() => '<span style="font-size: 32px;">🥕</span>').join('')}
+                      ${completedPlants > 20 ? `<span style="font-size: ${fontSize}px; font-weight: bold; color: ${defaultConfig.text_color}; align-self: center;">+${completedPlants - 20}</span>` : ''}
+                    </div>
+                  </div>
+                ` : ''}
+                
+                <div class="mt-4 grid grid-cols-2 gap-4">
+                  <button onclick="usePesticide()" 
+                    class="p-4 rounded-lg text-center transition-all transform hover:scale-105 btn-scale ${(userData?.pesticides || 0) === 0 ? 'opacity-50 cursor-not-allowed' : ''}"
+                    style="background: white; border: 3px solid ${defaultConfig.button_color};"
+                    ${(userData?.pesticides || 0) === 0 ? 'disabled' : ''}>
+                    <div style="font-size: ${fontSize * 3}px;">🐛</div>
+                    <div style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color}; font-weight: bold; margin-top: 8px;">× ${userData?.pesticides || 0}</div>
+                    <div style="font-size: ${fontSize * 0.75}px; color: #6b7280; margin-top: 4px;">除蟲劑 +10%</div>
+                  </button>
+                  <button onclick="useFertilizer()" 
+                    class="p-4 rounded-lg text-center transition-all transform hover:scale-105 btn-scale ${(userData?.fertilizers || 0) === 0 ? 'opacity-50 cursor-not-allowed' : ''}"
+                    style="background: white; border: 3px solid ${defaultConfig.primary_color};"
+                    ${(userData?.fertilizers || 0) === 0 ? 'disabled' : ''}>
+                    <div style="font-size: ${fontSize * 3}px;">💩</div>
+                    <div style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color}; font-weight: bold; margin-top: 8px;">× ${userData?.fertilizers || 0}</div>
+                    <div style="font-size: ${fontSize * 0.75}px; color: #6b7280; margin-top: 4px;">肥料 +15%</div>
+                  </button>
+                </div>
+                
+                <p style="font-size: ${fontSize * 0.85}px; color: #6b7280; margin-top: 12px; text-align: center;">
+                  💡 完成公園尋寶答對問題獲得肥料，完成遊戲獲得除蟲劑，讓蘿蔔苗長大！
+                </p>
+              </div>
+              
+              <div class="grid grid-cols-2 gap-4 mb-6">
+                <button onclick="currentPage='health'; render();" 
+                  class="game-card p-6 rounded-xl text-center transition-all transform hover:scale-105 slide-up"
+                  style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.accent_color};">
+                  <div style="font-size: 48px; margin-bottom: 8px;">💊</div>
+                  <div class="font-bold" style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">健康</div>
+                </button>
+                
+                <button onclick="currentPage='games'; render();" 
+                  class="game-card p-6 rounded-xl text-center transition-all transform hover:scale-105 slide-up"
+                  style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.primary_color}; animation-delay: 0.1s;">
+                  <div style="font-size: 48px; margin-bottom: 8px;">🎮</div>
+                  <div class="font-bold" style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">遊戲</div>
+                </button>
+                
+                <button onclick="currentPage='parks'; render();" 
+                  class="game-card p-6 rounded-xl text-center transition-all transform hover:scale-105 slide-up"
+                  style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.button_color}; animation-delay: 0.2s;">
+                  <div style="font-size: 48px; margin-bottom: 8px;">🏞️</div>
+                  <div class="font-bold" style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">公園</div>
+                </button>
+                
+                <button onclick="currentPage='emergency'; render();" 
+                  class="game-card p-6 rounded-xl text-center transition-all transform hover:scale-105 slide-up"
+                  style="background: ${defaultConfig.secondary_color}; border: 3px solid #ef4444; animation-delay: 0.3s;">
+                  <div style="font-size: 48px; margin-bottom: 8px;">🚨</div>
+                  <div class="font-bold" style="font-size: ${fontSize}px; color: ${defaultConfig.text_color};">緊急</div>
+                </button>
+              </div>
+              
+              <button onclick="currentPage='settings'; render();" 
+                class="w-full py-3 rounded-xl font-bold transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.secondary_color}; border: 2px solid ${defaultConfig.primary_color}; color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">
+                ⚙️ 字體大小設定
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderGames() {
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-8 text-center pulse-animation" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">
+                🎮 ${defaultConfig.games_section_title}
+              </h1>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <button onclick="currentPage='memory'; window.memoryState = { phase: 'memorize', sequence: [], userSequence: [] }; window.memoryState.sequence = Array.from({length: 4}, () => MEMORY_FRUITS[Math.floor(Math.random() * MEMORY_FRUITS.length)]); render();" 
+                  class="game-card p-8 rounded-xl transition-all transform hover:scale-105 slide-up"
+                  style="background: ${defaultConfig.secondary_color}; border: 4px solid ${defaultConfig.primary_color};">
+                  <div style="font-size: 64px; margin-bottom: 12px;">🧠</div>
+                  <h2 class="font-bold mb-2" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color};">記憶測試</h2>
+                  <p style="font-size: ${fontSize * 0.9}px; color: #6b7280;">記住水果順序並復述</p>
+                  <div class="mt-4 px-4 py-2 rounded-lg" style="background: ${defaultConfig.primary_color}; color: white; font-weight: bold; font-size: ${fontSize}px;">
+                    🐛 除蟲劑一次
+                  </div>
+                </button>
+                
+                <button onclick="currentPage='math'; window.mathProgress = { correct: 0, total: 3 }; window.currentMathQuestion = null; render();" 
+                  class="game-card p-8 rounded-xl transition-all transform hover:scale-105 slide-up"
+                  style="background: ${defaultConfig.secondary_color}; border: 4px solid ${defaultConfig.button_color}; animation-delay: 0.1s;">
+                  <div style="font-size: 64px; margin-bottom: 12px;">🔢</div>
+                  <h2 class="font-bold mb-2" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color};">算術挑戰</h2>
+                  <p style="font-size: ${fontSize * 0.9}px; color: #6b7280;">完成3題簡易算術</p>
+                  <div class="mt-4 px-4 py-2 rounded-lg" style="background: ${defaultConfig.button_color}; color: white; font-weight: bold; font-size: ${fontSize}px;">
+                    🐛 除蟲劑一次
+                  </div>
+                </button>
+                
+                <button onclick="window.startMatchingGame();" 
+                  class="game-card p-8 rounded-xl transition-all transform hover:scale-105 slide-up"
+                  style="background: ${defaultConfig.secondary_color}; border: 4px solid ${defaultConfig.accent_color}; animation-delay: 0.2s;">
+                  <div style="font-size: 64px; margin-bottom: 12px;">🎴</div>
+                  <h2 class="font-bold mb-2" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color};">配對遊戲</h2>
+                  <p style="font-size: ${fontSize * 0.9}px; color: #6b7280;">翻牌找出相同水果</p>
+                  <div class="mt-4 px-4 py-2 rounded-lg" style="background: ${defaultConfig.accent_color}; color: white; font-weight: bold; font-size: ${fontSize}px;">
+                    🐛 除蟲劑一次
+                  </div>
+                </button>
+              </div>
+              
+              <button onclick="currentPage='home'; render();" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                🏠 返回首頁
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderSettings() {
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-2xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-8 text-center" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">⚙️ 設定</h1>
+              
+              <div class="mb-8 p-6 rounded-xl slide-up" style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.primary_color};">
+                <label class="block font-bold mb-4" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};">
+                  🔤 字體大小調整
+                </label>
+                <input type="range" id="fontSizeSlider" min="14" max="28" value="${fontSize}" 
+                  class="w-full mb-4"
+                  style="accent-color: ${defaultConfig.primary_color};">
+                <div class="text-center p-4 rounded-lg" style="background: white; border: 2px solid ${defaultConfig.primary_color};">
+                  <span id="fontSizeDisplay" style="font-size: ${fontSize}px; font-weight: bold; color: ${defaultConfig.text_color};">
+                    ${fontSize}px
+                  </span>
+                </div>
+                <p style="font-size: ${fontSize * 0.9}px; color: #6b7280; margin-top: 12px; text-align: center;">
+                  👆 拖動滑桿調整文字大小（14-28）
+                </p>
+              </div>
+              
+              <button onclick="currentPage='home'; render();" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                🏠 返回首頁
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderSurvey() {
+      if (!window.surveyState) {
+        window.surveyState = { 
+          currentQuestion: 0, 
+          correctAnswers: 0,
+          fertilizersEarned: 0
+        };
+      }
+      
+      const state = window.surveyState;
+      const question = KAHOOT_QUESTIONS[state.currentQuestion];
+      
+      if (state.showResult) {
+        const isCorrect = state.selectedAnswer === question.answer;
+        
+        return `
+          <div class="min-h-full flex items-center justify-center p-4" style="background: ${isCorrect ? '#10b981' : '#ef4444'};">
+            <div class="bg-white rounded-3xl shadow-2xl p-12 max-w-2xl text-center bounce-in">
+              <div style="font-size: 96px; margin-bottom: 24px;">${isCorrect ? '✅' : '❌'}</div>
+              <h1 class="font-bold mb-4" style="font-size: ${fontSize * 2}px; color: ${isCorrect ? defaultConfig.primary_color : '#ef4444'};">
+                ${isCorrect ? '恭喜答對！' : '答錯了！'}
+              </h1>
+              ${!isCorrect ? `
+                <p style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color}; margin-bottom: 16px;">
+                  正確答案：${question.options[question.answer]}
+                </p>
+              ` : ''}
+              ${isCorrect ? `
+                <p style="font-size: ${fontSize * 1.5}px; color: ${defaultConfig.accent_color}; font-weight: bold; margin-bottom: 32px;">
+                  獲得：肥料一包 💩
+                </p>
+              ` : ''}
+              <button onclick="window.nextQuestion()" 
+                class="w-full py-6 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.3}px;">
+                ${state.currentQuestion < KAHOOT_QUESTIONS.length - 1 ? '繼續下一題 →' : '查看最終成績 🏆'}
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      
+      if (state.currentQuestion >= KAHOOT_QUESTIONS.length) {
+        const totalFertilizers = state.fertilizersEarned || 0;
+        
+        return `
+          <div class="min-h-full flex items-center justify-center p-4" style="background: linear-gradient(135deg, ${defaultConfig.primary_color} 0%, ${defaultConfig.button_color} 100%);">
+            <div class="bg-white rounded-3xl shadow-2xl p-12 max-w-3xl text-center bounce-in">
+              <div style="font-size: 96px; margin-bottom: 24px;">🏆</div>
+              <h1 class="font-bold mb-4" style="font-size: ${fontSize * 2.5}px; color: ${defaultConfig.primary_color};">
+                公園尋寶完成！
+              </h1>
+              
+              <div class="mb-8 p-8 rounded-xl" style="background: ${defaultConfig.secondary_color}; border: 4px solid ${defaultConfig.primary_color};">
+                <p style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color}; margin-bottom: 16px;">
+                  答對 ${state.correctAnswers} / ${KAHOOT_QUESTIONS.length} 題
+                </p>
+                <div class="p-6 rounded-lg" style="background: white; border: 2px solid ${defaultConfig.primary_color};">
+                  <div style="font-size: ${fontSize * 3}px; margin-bottom: 12px;">💩</div>
+                  <div style="font-size: ${fontSize * 1.5}px; font-weight: bold; color: ${defaultConfig.text_color};">
+                    肥料 × ${totalFertilizers}
+                  </div>
+                </div>
+              </div>
+              
+              <button onclick="window.finishSurvey()" 
+                class="w-full py-6 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.3}px;">
+                🎁 領取獎勵並返回
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);">
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <div class="mb-6 flex justify-center">
+                <span class="px-6 py-3 rounded-full" style="background: ${defaultConfig.primary_color}; color: white; font-size: ${fontSize}px; font-weight: bold;">
+                  題    ${state.currentQuestion + 1} / ${KAHOOT_QUESTIONS.length}
+                </span>
+              </div>
+              
+              <div class="mb-8 p-8 rounded-xl text-center slide-up" style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); color: white;">
+                <div style="font-size: ${fontSize * 6}px; margin-bottom: 16px;">${question.image}</div>
+                <h2 class="font-bold" style="font-size: ${fontSize * 1.8}px;">
+                  ${question.question}
+                </h2>
+              </div>
+              
+              <div class="grid grid-cols-1 ${question.options.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-2'} gap-6 mb-6">
+                ${question.options.map((option, index) => `
+                  <button onclick="window.answerSurvey(${index})" 
+                    class="kahoot-option p-8 rounded-2xl font-bold text-left transition-all transform hover:scale-105 slide-up"
+                    style="background: ${question.colors[index]}; color: white; font-size: ${fontSize * 1.8}px; animation-delay: ${index * 0.1}s; min-height: 120px; display: flex; align-items: center; justify-content: center; text-align: center;">
+                    ${option}
+                  </button>
+                `).join('')}
+              </div>
+              
+              <div class="text-center">
+                <p style="font-size: ${fontSize * 0.9}px; color: #6b7280;">
+                  💡 仔細思考後選擇答案
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    window.answerSurvey = function(selectedIndex) {
+      const state = window.surveyState;
+      const question = KAHOOT_QUESTIONS[state.currentQuestion];
+      
+      state.selectedAnswer = selectedIndex;
+      
+      const isCorrect = selectedIndex === question.answer;
+      
+      if (isCorrect) {
+        vibrate([100, 50, 100]);
+        state.correctAnswers += 1;
+        state.fertilizersEarned = (state.fertilizersEarned || 0) + 1;
+      } else {
+        vibrate([200]);
+      }
+      
+      state.showResult = true;
+      render();
+    };
+    
+    window.nextQuestion = function() {
+      const state = window.surveyState;
+      state.currentQuestion += 1;
+      state.showResult = false;
+      state.selectedAnswer = null;
+      render();
+    };
+    
+    window.finishSurvey = function() {
+      const state = window.surveyState;
+      
+      if (!currentUser || currentUser.isAdmin) {
+        window.surveyState = null;
+        currentPage = 'parks';
+        render();
+        return;
+      }
+      
+      // 使用 localStorage 更新肥料數量
+      const updates = {
+        fertilizers: (currentUser.fertilizers || 0) + (state.fertilizersEarned || 0)
+      };
+      
+      const updatedUser = updateUserInStorage(currentUser.username, updates);
+      
+      if (updatedUser) {
+        currentUser = updatedUser;
+        
+        showCenterMessage(`
+          <div style="text-align: center;">
+            <div style="font-size: ${fontSize * 3}px; margin-bottom: 10px;">🎉</div>
+            <div style="font-size: ${fontSize * 1.8}px; font-weight: bold;">獎勵已領取！</div>
+            <div style="font-size: ${fontSize}px; margin-top: 8px;">💩 肥料 +${state.fertilizersEarned || 0}</div>
+          </div>
+        `, defaultConfig.primary_color);
+        
+        setTimeout(() => {
+          window.surveyState = null;
+          currentPage = 'parks';
+          render();
+        }, 2000);
+      } else {
+        window.surveyState = null;
+        currentPage = 'parks';
+        render();
+      }
+    };
+    
+    function renderMemoryGame() {
+      if (!window.memoryState) {
+        window.memoryState = {
+          phase: 'memorize',
+          sequence: [],
+          userSequence: []
+        };
+        window.memoryState.sequence = Array.from({length: 4}, () => 
+          MEMORY_FRUITS[Math.floor(Math.random() * MEMORY_FRUITS.length)]
+        );
+      }
+      
+      const state = window.memoryState;
+      
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-6 text-center pulse-animation" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">🧠 記憶測試</h1>
+              
+              ${state.phase === 'memorize' ? `
+                <div class="text-center mb-8">
+                  <p class="mb-6" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};">
+                    請記住以下水果的順序：
+                  </p>
+                  <div class="flex justify-center gap-4 mb-8 flex-wrap">
+                    ${state.sequence.map((fruit, index) => `
+                      <div class="p-6 rounded-xl bounce-in" style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.primary_color}; font-size: 64px; animation-delay: ${index * 0.2}s;">
+                        ${fruit}
+                      </div>
+                    `).join('')}
+                  </div>
+                  <button onclick="window.startMemoryTest()" 
+                    class="px-8 py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                    style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.2}px;">
+                    ✅ 我記住了！開始作答
+                  </button>
+                </div>
+              ` : `
+                <div class="text-center mb-8">
+                  <p class="mb-6" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};">
+                    請按照順序點擊水果：
+                  </p>
+                  <div class="flex justify-center gap-4 mb-8 flex-wrap">
+                    ${state.userSequence.map((fruit, index) => `
+                      <div class="p-6 rounded-xl slide-up" style="background: ${defaultConfig.primary_color}; font-size: 64px; animation-delay: ${index * 0.1}s;">
+                        ${fruit}
+                      </div>
+                    `).join('')}
+                    ${Array.from({length: state.sequence.length - state.userSequence.length}).map(() => `
+                      <div class="p-6 rounded-xl" style="background: #e5e7eb; font-size: 64px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+                        ❓
+                      </div>
+                    `).join('')}
+                  </div>
+                  <div class="grid grid-cols-3 gap-4 max-w-md mx-auto">
+                    ${MEMORY_FRUITS.map((fruit, index) => `
+                      <button onclick="window.selectMemoryFruit('${fruit}')" 
+                        class="p-6 rounded-xl transition-all transform hover:scale-110 btn-scale slide-up"
+                        style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.primary_color}; font-size: 48px; animation-delay: ${index * 0.05}s;">
+                        ${fruit}
+                      </button>
+                    `).join('')}
+                  </div>
+                </div>
+              `}
+              
+              <button onclick="currentPage='games'; window.memoryState = null; render();" 
+                class="w-full py-3 rounded-xl font-bold transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.secondary_color}; border: 2px solid ${defaultConfig.button_color}; color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">
+                ← 返回遊戲選單
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderMathGame() {
+      if (!window.mathProgress) {
+        window.mathProgress = { correct: 0, total: 3 };
+      }
+      
+      if (!window.currentMathQuestion) {
+        const a = Math.floor(Math.random() * 20) + 1;
+        const b = Math.floor(Math.random() * 20) + 1;
+        const operations = ['+', '-'];
+        const op = operations[Math.floor(Math.random() * operations.length)];
+        
+        window.currentMathQuestion = {
+          a, b, op,
+          answer: op === '+' ? a + b : a - b
+        };
+      }
+      
+      const q = window.currentMathQuestion;
+      const progress = window.mathProgress;
+      
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-2xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-6 text-center pulse-animation" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">🔢 算術挑戰</h1>
+              
+              <div class="mb-6 text-center">
+                <span class="px-6 py-3 rounded-full" style="background: ${defaultConfig.secondary_color}; font-size: ${fontSize * 1.2}px; font-weight: bold; color: ${defaultConfig.text_color}; border: 3px solid ${defaultConfig.primary_color};">
+                  進  ：${progress.correct} / ${progress.total}
+                </span>
+              </div>
+              
+              <div class="text-center mb-8 p-8 rounded-xl slide-up" style="background: ${defaultConfig.secondary_color}; border: 4px solid ${defaultConfig.primary_color};">
+                <p class="font-bold mb-6" style="font-size: ${fontSize * 2.5}px; color: ${defaultConfig.text_color};">
+                  ${q.a} ${q.op} ${q.b} = ?
+                </p>
+                <form id="mathAnswerForm" onsubmit="event.preventDefault(); window.checkMathAnswer();">
+                  <input type="number" id="mathAnswer" 
+                    class="w-full px-6 py-4 border-4 rounded-xl text-center focus:outline-none"
+                    style="font-size: ${fontSize * 1.5}px; border-color: ${defaultConfig.primary_color}; font-weight: bold;"
+                    placeholder="請輸入答案"
+                    autofocus>
+                </form>
+              </div>
+              
+              <button onclick="window.checkMathAnswer()" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale mb-4"
+                style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.3}px;">
+                ✅ 確認答案
+              </button>
+              
+              <button onclick="currentPage='games'; window.mathProgress = null; window.currentMathQuestion = null; render();" 
+                class="w-full py-3 rounded-xl font-bold transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.secondary_color}; border: 2px solid ${defaultConfig.button_color}; color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">
+                ← 返回遊戲選單
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderMatchingGame() {
+      if (!window.matchingCards) {
+        const fruits = ['🍎', '🍌', '🍊', '🍇'];
+        const pairs = [...fruits, ...fruits];
+        window.matchingCards = pairs
+          .sort(() => Math.random() - 0.5)
+          .map((fruit, index) => ({ id: index, fruit, matched: false }));
+        window.matchingState = {
+          flipped: [],
+          matches: 0,
+          processing: false
+        };
+      }
+      
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-6 text-center pulse-animation" style="font-size: ${fontSize * 2}px; color: ${defaultConfig.primary_color};">🎴 配對遊戲</h1>
+              
+              <div class="mb-6 text-center">
+                <span class="px-6 py-3 rounded-full" style="background: ${defaultConfig.secondary_color}; font-size: ${fontSize * 1.2}px; font-weight: bold; color: ${defaultConfig.text_color}; border: 3px solid ${defaultConfig.primary_color};">
+                  已配對：${window.matchingState.matches} / 4
+                </span>
+              </div>
+              
+              <div class="grid grid-cols-4 gap-4 mb-8 max-w-xl mx-auto">
+                ${window.matchingCards.map((card, index) => `
+                  <div id="card-${card.id}" class="match-card ${card.matched ? 'flipped' : ''} slide-up" 
+                    style="animation-delay: ${index * 0.05}s;"
+                    onclick="window.flipMatchCard(${card.id})">
+                    <div class="card-inner">
+                      <div class="card-front" style="background: ${defaultConfig.primary_color}; color: white; font-size: 32px; font-weight: bold; border: 3px solid ${defaultConfig.primary_color};">
+                        ?
+                      </div>
+                      <div class="card-back" style="background: white; border: 3px solid ${card.matched ? defaultConfig.accent_color : defaultConfig.primary_color}; font-size: 48px;">
+                        ${card.fruit}
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+              
+              <button onclick="currentPage='games'; window.matchingCards = null; window.matchingState = null; render();" 
+                class="w-full py-3 rounded-xl font-bold transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.secondary_color}; border: 2px solid ${defaultConfig.button_color}; color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">
+                ← 返回遊戲選單
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    window.startMatchingGame = function() {
+      currentPage = 'matching';
+      window.matchingCards = null;
+      window.matchingState = null;
+      render();
+    };
+    
+    window.startMemoryTest = function() {
+      window.memoryState.phase = 'test';
+      window.memoryState.userSequence = [];
+      render();
+    };
+    
+    window.selectMemoryFruit = function(fruit) {
+      if (!window.memoryState || window.memoryState.phase !== 'test') return;
+      
+      const expectedIndex = window.memoryState.userSequence.length;
+      const expectedFruit = window.memoryState.sequence[expectedIndex];
+      
+      if (fruit === expectedFruit) {
+        window.memoryState.userSequence.push(fruit);
+        
+        if (window.memoryState.userSequence.length === window.memoryState.sequence.length) {
+          addPesticide();
+          
+          showCenterMessage(`
+            <div style="text-align: center;">
+              <div style="font-size: ${fontSize * 3}px; margin-bottom: 10px;">🎉</div>
+              <div style="font-size: ${fontSize * 1.8}px; font-weight: bold;">恭喜答對！</div>
+              <div style="font-size: ${fontSize}px; margin-top: 8px;">獲得除蟲劑一次 🐛</div>
+            </div>
+          `, defaultConfig.primary_color);
+          
+          setTimeout(() => {
+            currentPage = 'games';
+            window.memoryState = null;
+            render();
+          }, 2000);
+        } else {
+          render();
+        }
+      } else {
+        showCenterMessage(`
+          <div style="text-align: center;">
+            <div style="font-size: ${fontSize * 3}px; margin-bottom: 10px;">❌</div>
+            <div style="font-size: ${fontSize * 1.3}px; font-weight: bold;">答錯囉！</div>
+            <div style="font-size: ${fontSize}px;">再來一次加油吧！</div>
+          </div>
+        `, '#ef4444');
+        
+        setTimeout(() => {
+          currentPage = 'games';
+          window.memoryState = null;
+          render();
+        }, 2000);
+      }
+    };
+    
+    window.flipMatchCard = function(cardId) {
+      const card = window.matchingCards.find(c => c.id === cardId);
+      if (!card || card.matched) return;
+      
+      if (window.matchingState.flipped.includes(cardId)) return;
+      if (window.matchingState.flipped.length >= 2) return;
+      if (window.matchingState.processing) return;
+      
+      const cardElement = document.getElementById(`card-${cardId}`);
+      cardElement.classList.add('flipped');
+      window.matchingState.flipped.push(cardId);
+      
+      if (window.matchingState.flipped.length === 2) {
+        window.matchingState.processing = true;
+        
+        const [id1, id2] = window.matchingState.flipped;
+        const card1 = window.matchingCards.find(c => c.id === id1);
+        const card2 = window.matchingCards.find(c => c.id === id2);
+        
+        if (card1.fruit === card2.fruit) {
+          setTimeout(() => {
+            card1.matched = true;
+            card2.matched = true;
+            window.matchingState.matches += 1;
+            window.matchingState.flipped = [];
+            window.matchingState.processing = false;
+            
+            const card1El = document.getElementById(`card-${id1}`);
+            const card2El = document.getElementById(`card-${id2}`);
+            if (card1El && card2El) {
+              card1El.querySelector('.card-back').style.borderColor = defaultConfig.accent_color;
+              card2El.querySelector('.card-back').style.borderColor = defaultConfig.accent_color;
+            }
+            
+            if (window.matchingState.matches === 4) {
+              setTimeout(() => {
+                addPesticide();
+                
+                showCenterMessage(`
+                  <div style="text-align: center;">
+                    <div style="font-size: ${fontSize * 3}px; margin-bottom: 10px;">🎉</div>
+                    <div style="font-size: ${fontSize * 1.8}px; font-weight: bold;">恭喜答對！</div>
+                    <div style="font-size: ${fontSize}px; margin-top: 8px;">獲得除蟲劑一次 🐛</div>
+                  </div>
+                `, defaultConfig.primary_color);
+                
+                setTimeout(() => {
+                  currentPage = 'games';
+                  window.matchingCards = null;
+                  window.matchingState = null;
+                  render();
+                }, 2000);
+              }, 500);
+            }
+          }, 600);
+        } else {
+          setTimeout(() => {
+            const card1El = document.getElementById(`card-${id1}`);
+            const card2El = document.getElementById(`card-${id2}`);
+            if (card1El && card2El) {
+              card1El.classList.remove('flipped');
+              card2El.classList.remove('flipped');
+            }
+            window.matchingState.flipped = [];
+            window.matchingState.processing = false;
+          }, 1000);
+        }
+      }
+    };
+    
+    window.checkMathAnswer = function() {
+      const userAnswer = document.getElementById('mathAnswer').value;
+      if (parseInt(userAnswer) === window.currentMathQuestion.answer) {
+        window.mathProgress.correct += 1;
+        window.currentMathQuestion = null;
+        
+        if (window.mathProgress.correct >= 3) {
+          addPesticide();
+          
+          showCenterMessage(`
+            <div style="text-align: center;">
+              <div style="font-size: ${fontSize * 3}px; margin-bottom: 10px;">🎉</div>
+              <div style="font-size: ${fontSize * 1.8}px; font-weight: bold;">恭喜答對！</div>
+              <div style="font-size: ${fontSize}px; margin-top: 8px;">獲得除蟲劑一次 🐛</div>
+            </div>
+          `, defaultConfig.primary_color);
+          
+          setTimeout(() => {
+            currentPage = 'games';
+            window.mathProgress = null;
+            window.currentMathQuestion = null;
+            render();
+          }, 2000);
+        } else {
+          render();
+        }
+      } else {
+        const answerInput = document.getElementById('mathAnswer');
+        answerInput.value = '';
+        answerInput.style.borderColor = '#ef4444';
+        setTimeout(() => {
+          answerInput.style.borderColor = defaultConfig.primary_color;
+        }, 1000);
+      }
+    };
+    
+    function renderParks() {
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-6xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-6 text-center pulse-animation" style="font-size: ${fontSize * 1.8}px; color: ${defaultConfig.primary_color};">🏞️ ${defaultConfig.park_section_title}</h1>
+              
+              <button onclick="currentPage='survey'; window.surveyState = { currentQuestion: 0, correctAnswers: 0, fertilizersEarned: 0 }; render();" 
+                class="w-full mb-6 py-6 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale pulse-animation"
+                style="background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); font-size: ${fontSize * 1.3}px; box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);">
+                ${defaultConfig.survey_button_text}
+                <div style="font-size: ${fontSize * 0.9}px; margin-top: 8px; opacity: 0.95;">現場互動問題 · 答對獲得肥料 · 與 Kahoot 類似玩法</div>
+              </button>
+              
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <div class="space-y-4" style="max-height: 600px; overflow-y: auto;">
+                  <h2 class="font-bold" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color};">📍 推薦公園清單</h2>
+                  ${PARKS.map((park, index) => `
+                    <div class="p-4 rounded-xl cursor-pointer transition-all hover:scale-105 slide-up"
+                      style="background: ${defaultConfig.secondary_color}; border: 3px solid ${defaultConfig.primary_color}; animation-delay: ${index * 0.1}s;"
+                      onclick="focusPark(${park.id})">
+                      <h3 class="font-bold mb-2" style="font-size: ${fontSize * 1.2}px; color: ${defaultConfig.text_color};">${park.name}</h3>
+                      <p style="font-size: ${fontSize * 0.9}px; color: ${defaultConfig.text_color}; margin-bottom: 8px;">
+                        ⭐ 評分：${park.rating} / 5.0
+                      </p>
+                      <p style="font-size: ${fontSize * 0.85}px; color: ${defaultConfig.text_color};">
+                        🌳 特色：${park.features}
+                      </p>
+                    </div>
+                  `).join('')}
+                </div>
+                
+                <div>
+                  <div id="map" style="height: 600px; border-radius: 16px; border: 3px solid ${defaultConfig.primary_color};"></div>
+                </div>
+              </div>
+              
+              <button onclick="currentPage='home'; render();" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                🏠 返回首頁
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderHealth() {
+      allUsers = loadUsersFromStorage();
+      const userData = currentUser ? allUsers.find(u => u.username === currentUser.username) : null;
+      
+      if (userData) {
+        currentUser = userData;
+      }
+      
+      const hasMedication = userData && userData.medication_name;
+      const today = new Date().toLocaleDateString('zh-TW');
+      const isCompleted = userData && userData.medication_completed && userData.medication_date === today;
+      
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-6 text-center pulse-animation" style="font-size: ${fontSize * 1.8}px; color: ${defaultConfig.primary_color};">💊 ${defaultConfig.health_section_title}</h1>
+              
+              ${hasMedication ? `
+                <div class="mb-8 p-6 rounded-xl slide-up" style="background: ${isCompleted ? '#d1fae5' : '#fef3c7'}; border: 3px solid ${isCompleted ? defaultConfig.primary_color : defaultConfig.accent_color};">
+                  <h2 class="font-bold mb-4" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color};">
+                    ${isCompleted ? '✅ 今日已完成服藥' : '⏰ 服藥提醒'}
+                  </h2>
+                  <p style="font-size: ${fontSize * 1.1}px; color: ${defaultConfig.text_color}; margin-bottom: 8px;">
+                    💊 藥物：${userData.medication_name}
+                  </p>
+                  <p style="font-size: ${fontSize * 1.1}px; color: ${defaultConfig.text_color};">
+                    🕐 時間：${userData.medication_time}
+                  </p>
+                  ${!isCompleted ? `
+                    <button onclick="manualConfirmMedication()" 
+                      class="w-full mt-4 py-3 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                      style="background: ${defaultConfig.primary_color}; font-size: ${fontSize}px;">
+                      ✅ 確認服藥（肥料一包 💩）
+                    </button>
+                  ` : ''}
+                </div>
+              ` : ''}
+              
+              <form id="medicationForm" class="space-y-6 mb-8">
+                <h2 class="font-bold" style="font-size: ${fontSize * 1.3}px; color: ${defaultConfig.text_color};">
+                  ${hasMedication ? '🔧 修改' : '➕ 新增'}服藥提醒
+                </h2>
+                
+                <div class="slide-up">
+                  <label class="block font-semibold mb-2" style="color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">💊 藥物名稱</label>
+                  <input type="text" id="medicationName" required 
+                    value="${hasMedication ? userData.medication_name : ''}"
+                    class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none"
+                    style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};"
+                    placeholder="例如：降血壓藥">
+                </div>
+                
+                <div class="slide-up" style="animation-delay: 0.1s;">
+                  <label class="block font-semibold mb-2" style="color: ${defaultConfig.text_color}; font-size: ${fontSize}px;">🕐 服藥時間</label>
+                  <input type="time" id="medicationTime" required 
+                    value="${hasMedication ? userData.medication_time : ''}"
+                    class="w-full px-4 py-3 border-2 rounded-xl focus:outline-none"
+                    style="font-size: ${fontSize}px; border-color: ${defaultConfig.primary_color};">
+                </div>
+                
+                <button type="submit" 
+                  class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: ${defaultConfig.primary_color}; font-size: ${fontSize * 1.1}px; animation-delay: 0.2s;">
+                  ${hasMedication ? '💾 更新' : '✅ 新增'}提醒
+                </button>
+              </form>
+              
+              <div class="p-6 rounded-xl mb-6" style="background: #e0f2fe; border: 3px solid ${defaultConfig.button_color};">
+                <p style="font-size: ${fontSize * 0.9}px; color: ${defaultConfig.text_color};">
+                  💡 溫馨提醒：系統會在服藥時間前後1小時內彈出提醒通知，確認服藥後可以獲得肥料一包喔！
+                </p>
+              </div>
+              
+              <button onclick="currentPage='home'; render();" 
+                class="w-full py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                🏠 返回首頁
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderEmergency() {
+      return `
+        <div class="min-h-full p-4 page-transition" style="background: ${defaultConfig.secondary_color};">
+          <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 bounce-in">
+              <h1 class="font-bold mb-8 text-center pulse-animation" style="font-size: ${fontSize * 2}px; color: #ef4444;">🚨 ${defaultConfig.emergency_title}</h1>
+              
+              <div class="space-y-6">
+                <a href="tel:119" 
+                  class="block py-12 rounded-xl font-bold text-white text-center transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: #ef4444; font-size: ${fontSize * 2}px; text-decoration: none;">
+                  🚑 撥打 119<br>
+                  <span style="font-size: ${fontSize * 1.2}px;">救護車 / 消防局</span>
+                </a>
+                
+                <a href="tel:110" 
+                  class="block py-12 rounded-xl font-bold text-white text-center transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: #3b82f6; font-size: ${fontSize * 2}px; text-decoration: none; animation-delay: 0.1s;">
+                  👮 撥打 110<br>
+                  <span style="font-size: ${fontSize * 1.2}px;">警察局</span>
+                </a>
+                
+                <a href="tel:1966" 
+                  class="block py-12 rounded-xl font-bold text-white text-center transition-all transform hover:scale-105 btn-scale slide-up"
+                  style="background: #10b981; font-size: ${fontSize * 2}px; text-decoration: none; animation-delay: 0.2s;">
+                      撥打 1966<br>
+                  <span style="font-size: ${fontSize * 1.2}px;">衛生福利部</span>
+                </a>
+              </div>
+              
+              <div class="mt-8 p-6 rounded-xl" style="background: #fef3c7; border: 3px solid ${defaultConfig.accent_color};">
+                <p style="font-size: ${fontSize * 1.1}px; color: ${defaultConfig.text_color}; text-align: center; font-weight: bold;">
+                  ⚠️ 緊急狀況請立即撥打電話求助！
+                </p>
+              </div>
+              
+              <button onclick="currentPage='home'; render();" 
+                class="w-full mt-6 py-4 rounded-xl font-bold text-white transition-all transform hover:scale-105 btn-scale"
+                style="background: ${defaultConfig.button_color}; font-size: ${fontSize * 1.1}px;">
+                🏠 返回首頁
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    window.focusPark = function(parkId) {
+      const park = PARKS.find(p => p.id === parkId);
+      if (!park || !window.parkMap) return;
+      
+      window.parkMap.setView([park.lat, park.lng], 16);
+      
+      if (window.currentMarker) {
+        window.currentMarker.remove();
+      }
+      
+      window.currentMarker = L.marker([park.lat, park.lng])
+        .addTo(window.parkMap)
+        .bindPopup(`
+          <div style="font-size: 14px;">
+            <strong style="font-size: 16px;">${park.name}</strong><br>
+            ⭐ 評分：${park.rating} / 5.0<br>
+            🌳 特色：${park.features}
+          </div>
+        `)
+        .openPopup();
+    };
+    
+    window.confirmMedication = function() {
+      const overlay = document.getElementById('medicationOverlay');
+      if (overlay) {
+        overlay.remove();
+      }
+      
+      if (!currentUser || currentUser.isAdmin) return;
+      
+      const updates = {
+        medication_completed: true,
+        medication_date: new Date().toLocaleDateString('zh-TW'),
+        fertilizers: (currentUser.fertilizers || 0) + 1
+      };
+      
+      const updatedUser = updateUserInStorage(currentUser.username, updates);
+      
+      if (updatedUser) {
+        currentUser = updatedUser;
+        showMessage('✅ 已確認服藥！獲得肥料一包 💩', defaultConfig.primary_color);
+      }
+    };
+    
+    window.manualConfirmMedication = function() {
+      window.confirmMedication();
+      render();
+    };
+    
+    window.usePesticide = function() {
+      if (!currentUser || currentUser.isAdmin) return;
+      
+      allUsers = loadUsersFromStorage();
+      const userData = allUsers.find(u => u.username === currentUser.username);
+      
+      if (!userData || (userData.pesticides || 0) === 0) return;
+      
+      vibrate(50);
+      
+      const newProgress = Math.min((userData.growth_progress || 0) + 10, 100);
+      
+      const updates = {
+        pesticides: (userData.pesticides || 0) - 1,
+        growth_progress: newProgress,
+        total_nutrients: (userData.total_nutrients || 0) + 10
+      };
+      
+      if (newProgress >= 100) {
+        vibrate([100, 50, 100, 50, 100]);
+        updates.growth_progress = 0;
+        updates.completed_plants = (userData.completed_plants || 0) + 1;
+        
+        const updatedUser = updateUserInStorage(currentUser.username, updates);
+        
+        if (updatedUser) {
+          currentUser = updatedUser;
+          render();
+          
+          showCenterMessage(`
+            <div style="text-align: center;">
+              <div style="font-size: ${fontSize * 4}px; margin-bottom: 16px;">🥕</div>
+              <div style="font-size: ${fontSize * 2}px; font-weight: bold;">蘿蔔苗長大了！</div>
+              <div style="font-size: ${fontSize * 1.2}px; margin-top: 12px;">恭喜收穫第 ${updatedUser.completed_plants} 顆蘿蔔！</div>
+            </div>
+          `, defaultConfig.primary_color, 3000);
+        }
+      } else {
+        const updatedUser = updateUserInStorage(currentUser.username, updates);
+        
+        if (updatedUser) {
+          currentUser = updatedUser;
+          render();
+          
+          showMessage('🐛✨ 使用除蟲劑成功！蘿蔔苗 +10% 成長', defaultConfig.button_color);
+        }
+      }
+    };
+    
+    window.useFertilizer = function() {
+      if (!currentUser || currentUser.isAdmin) return;
+      
+      allUsers = loadUsersFromStorage();
+      const userData = allUsers.find(u => u.username === currentUser.username);
+      
+      if (!userData || (userData.fertilizers || 0) === 0) return;
+      
+      vibrate(50);
+      
+      const newProgress = Math.min((userData.growth_progress || 0) + 15, 100);
+      
+      const updates = {
+        fertilizers: (userData.fertilizers || 0) - 1,
+        growth_progress: newProgress,
+        total_nutrients: (userData.total_nutrients || 0) + 15
+      };
+      
+      if (newProgress >= 100) {
+        vibrate([100, 50, 100, 50, 100]);
+        updates.growth_progress = 0;
+        updates.completed_plants = (userData.completed_plants || 0) + 1;
+        
+        const updatedUser = updateUserInStorage(currentUser.username, updates);
+        
+        if (updatedUser) {
+          currentUser = updatedUser;
+          render();
+          
+          showCenterMessage(`
+            <div style="text-align: center;">
+              <div style="font-size: ${fontSize * 4}px; margin-bottom: 16px;">🥕</div>
+              <div style="font-size: ${fontSize * 2}px; font-weight: bold;">蘿蔔苗長大了！</div>
+              <div style="font-size: ${fontSize * 1.2}px; margin-top: 12px;">恭喜收穫第 ${updatedUser.completed_plants} 顆蘿蔔！</div>
+            </div>
+          `, defaultConfig.primary_color, 3000);
+        }
+      } else {
+        const updatedUser = updateUserInStorage(currentUser.username, updates);
+        
+        if (updatedUser) {
+          currentUser = updatedUser;
+          render();
+          
+          showMessage('💩✨ 使用肥料成功！蘿蔔苗 +15% 成長', defaultConfig.primary_color);
+        }
+      }
+    };
+    
+    function render() {
+      const app = document.getElementById('app');
+      if (!app) return;
+      
+      let content = '';
+      
+      switch(currentPage) {
+        case 'login':
+          content = renderLogin();
+          break;
+        case 'register':
+          content = renderRegister();
+          break;
+        case 'admin':
+          content = renderAdmin();
+          break;
+        case 'home':
+          content = renderHome();
+          break;
+        case 'games':
+          content = renderGames();
+          break;
+        case 'settings':
+          content = renderSettings();
+          break;
+        case 'survey':
+          content = renderSurvey();
+          break;
+        case 'memory':
+          content = renderMemoryGame();
+          break;
+        case 'math':
+          content = renderMathGame();
+          break;
+        case 'matching':
+          content = renderMatchingGame();
+          break;
+        case 'parks':
+          content = renderParks();
+          break;
+        case 'health':
+          content = renderHealth();
+          break;
+        case 'emergency':
+          content = renderEmergency();
+          break;
+      }
+      
+      app.innerHTML = content;
+      attachEventListeners();
+    }
+    
+    function attachEventListeners() {
+      const loginForm = document.getElementById('loginForm');
+      if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const username = document.getElementById('loginUsername').value.trim();
+          const password = document.getElementById('loginPassword').value.trim();
+          handleLogin(username, password);
+        });
+      }
+      
+      const registerForm = document.getElementById('registerForm');
+      if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const username = document.getElementById('regUsername').value;
+          const password = document.getElementById('regPassword').value;
+          const displayName = document.getElementById('regDisplayName').value;
+          handleRegister(username, password, displayName);
+        });
+      }
+      
+      const fontSizeSlider = document.getElementById('fontSizeSlider');
+      if (fontSizeSlider) {
+        fontSizeSlider.addEventListener('input', (e) => {
+          fontSize = parseInt(e.target.value);
+          localStorage.setItem(FONT_SIZE_KEY, fontSize);
+          document.getElementById('fontSizeDisplay').textContent = fontSize + 'px';
+          document.getElementById('fontSizeDisplay').style.fontSize = fontSize + 'px';
+        });
+      }
+      
+      const medicationForm = document.getElementById('medicationForm');
+      if (medicationForm) {
+        medicationForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('medicationName').value;
+          const time = document.getElementById('medicationTime').value;
+          
+          if (!currentUser || currentUser.isAdmin) return;
+          
+          const updates = {
+            medication_name: name,
+            medication_time: time,
+            medication_completed: false,
+            medication_date: ''
+          };
+          
+          const updatedUser = updateUserInStorage(currentUser.username, updates);
+          
+          if (updatedUser) {
+            currentUser = updatedUser;
+            showMessage('✅ 服藥提醒已設定成功！', defaultConfig.primary_color);
+            setTimeout(() => render(), 2000);
+          }
+        });
+      }
+      
+      if (currentPage === 'parks') {
+        setTimeout(() => {
+          const mapElement = document.getElementById('map');
+          if (mapElement) {
+            if (window.parkMap) {
+              window.parkMap.remove();
+              window.parkMap = null;
+            }
+            
+            window.parkMap = L.map('map').setView([25.1289, 121.7268], 13);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© OpenStreetMap contributors'
+            }).addTo(window.parkMap);
+            
+            PARKS.forEach(park => {
+              L.marker([park.lat, park.lng])
+                .addTo(window.parkMap)
+                .bindPopup(`
+                  <div style="font-size: 14px;">
+                    <strong style="font-size: 16px;">${park.name}</strong><br>
+                    ⭐ 評分：${park.rating} / 5.0<br>
+                    🌳 特色：${park.features}
+                  </div>
+                `);
+            });
+          }
+        }, 100);
+      }
+    }
+    
+    // 初始化應用程式
+    render();
+    
+    // 每30秒檢查一次服藥提醒
+    setInterval(checkMedicationReminder, 30000);
+    checkMedicationReminder();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c8a2cc087e2f228',t:'MTc3MDIwODE3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./Grandpa GO_files/saved_resource.html"></iframe>
+</body></html>
